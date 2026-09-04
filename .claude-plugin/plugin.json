@@ -1,0 +1,20 @@
+{
+  "name": "swe",
+  "version": "0.1.0",
+  "description": "An unforgiving senior-engineer standard that fights AI slop: no duplicate functions, one task per unit, one kind per file, tiny leaves, no swallowed errors, hot-path Big-O, plain one-line comments. Ships a reviewer agent, a /swe command, and the standard as a skill.",
+  "author": {
+    "name": "Klyne Chrysler C. Dotarot"
+  },
+  "repository": "https://github.com/KlyneChrysler/swe-agent",
+  "homepage": "https://github.com/KlyneChrysler/swe-agent#readme",
+  "license": "Apache-2.0",
+  "keywords": [
+    "code-review",
+    "clean-code",
+    "standards",
+    "anti-slop",
+    "ai-slop",
+    "refactoring",
+    "senior-engineer"
+  ]
+}
