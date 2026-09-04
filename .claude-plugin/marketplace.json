@@ -5,13 +5,13 @@
   },
   "metadata": {
     "description": "The swe plugin: an unforgiving senior-engineer standard that fights AI slop.",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "swe",
-      "description": "An unforgiving senior-engineer standard that fights AI slop: no duplicate functions, one task per unit, one kind per file, tiny leaves, no swallowed errors, hot-path Big-O, plain one-line comments. Ships a reviewer agent, a /swe command, and the standard as a skill.",
-      "version": "0.1.0",
+      "description": "An unforgiving senior-engineer standard that fights AI slop: no duplicate functions, one task per unit, one kind per file, tiny leaves, no swallowed errors, hot-path Big-O, plain one-line comments, no templated vibecoded UI. Ships a reviewer agent, a /swe command, and the standard as a skill.",
+      "version": "0.2.0",
       "source": {
         "source": "github",
         "repo": "KlyneChrysler/swe-agent",

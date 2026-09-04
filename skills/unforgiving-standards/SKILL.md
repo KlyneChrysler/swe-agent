@@ -194,6 +194,34 @@ generic framework for a specific job. Delete dead code the moment it is
 dead - commented-out blocks, unused parameters, unreachable branches,
 scaffolding "kept just in case". YAGNI is a rule here, not a mood.
 
+### 18. No templated, vibecoded UI
+
+Code slop has a visual twin. AI-generated interfaces converge on the same
+handful of tells, and a design built from them screams "a machine made this
+in one shot". Every one of these is banned unless you can name a real reason
+it serves the product:
+
+- **Type**: Inter (or Geist) on everything; the Space Grotesk + Instrument
+  Serif pairing; serif italic "accents"; a display font doing nothing but
+  looking like a template. Choose type for the product, not the default.
+- **Color**: the purple-to-blue gradient; gradient text on the hero; colored
+  card borders; low-contrast "moody" dark mode that fails a contrast check.
+- **Effects**: glassmorphism cards; grain over a gradient; fade-in on
+  scroll; a cursor-following glow or beam; buttons that only fade on hover.
+  An effect must earn its place by clarifying, not decorate to look busy.
+- **Layout**: three equal icon-boxes in a row; a little badge pill above the
+  headline; inconsistent spacing (a spacing scale is not optional).
+- **Components**: shipping untouched shadcn defaults; Lucide icons on
+  every single thing. Defaults are a starting point, not the design.
+- **Copy**: emojis in headings; generic buzzword filler ("Supercharge your
+  workflow"); em dashes everywhere (rule 14 already bans these).
+
+The positive rule behind the list: make deliberate choices. A real spacing
+scale, type picked for the content, color with intent and contrast, motion
+that means something, copy that says a specific true thing. If a choice is
+there only because it is the framework default or the current trend, it is
+slop. Distinctive and legible beats trendy and templated, every time.
+
 ## How to use this
 
 - **Writing code**: hold each unit to every rule as you write it. The rules

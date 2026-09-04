@@ -47,7 +47,7 @@ no infrastructure. Inject dependencies, ban globals. Small interfaces at the
 consumer. Immutable by default. Errors wrapped, never swallowed. Size
 budgets are caps. Hot paths are O(1)/O(log n) and bounded. Tests are part of
 done. Names say what. Comments are one plain line with no em dashes. No
-speculative abstraction, no dead code.
+speculative abstraction, no dead code. No templated, vibecoded UI.
 
 The full text lives in
 [`skills/unforgiving-standards/SKILL.md`](skills/unforgiving-standards/SKILL.md).

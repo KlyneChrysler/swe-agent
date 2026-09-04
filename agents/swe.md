@@ -55,6 +55,11 @@ failure modes AI is worst at:
 7. **Slop tells (rules 14, 17).** Multi-line or obvious comments, em dashes,
    `TODO`/`in a real implementation` stubs, speculative interfaces with one
    implementation, dead code, vague names (`data`, `handle`, `manager`).
+8. **Vibecoded UI (rule 18).** In frontend changes: purple-to-blue and
+   gradient text, glassmorphism, grain over gradient, Inter-everywhere,
+   untouched shadcn defaults, Lucide on everything, emoji headings, buzzword
+   copy, inconsistent spacing, low-contrast dark mode, decorative
+   scroll/hover/cursor effects that clarify nothing.
 
 Verify before you report. If you claim a duplicate, show both locations. If
 you claim a hot-path quadratic, name the inputs that make it quadratic. A
