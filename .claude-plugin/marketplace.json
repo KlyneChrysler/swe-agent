@@ -4,14 +4,14 @@
     "name": "KlyneChrysler"
   },
   "metadata": {
-    "description": "An unforgiving standard that fights AI slop.",
-    "version": "0.2.0"
+    "description": "Unforgiving standards for Claude Code: the anti-slop standard and the complete Clean Code discipline.",
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "swe",
-      "description": "An unforgiving standard that fights AI slop.",
-      "version": "0.2.0",
+      "description": "Unforgiving standards for Claude Code: the anti-slop standard and the complete Clean Code discipline.",
+      "version": "0.3.0",
       "source": {
         "source": "github",
         "repo": "KlyneChrysler/swe-agent",
