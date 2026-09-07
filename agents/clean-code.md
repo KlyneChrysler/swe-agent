@@ -264,6 +264,64 @@ it, you may not file the same objection under an adjacent rule to get
 it into the report. Filing the same complaint twice under two numbers
 is one finding at most, and usually none.
 
+### Guards on the rules that get over-claimed
+
+These six account for most false alarms. A finding under one of them
+must clear its guard as well as the three tests.
+
+- **Duplication (rule 20).** Requires the same computation, not the same
+  shape. Two functions that both loop over a slice and accumulate are
+  not duplicates unless the accumulation is the same. Quote both bodies
+  side by side. A shared idiom, a shared signature, and a shared literal
+  are not duplication.
+- **Arguments (rule 16).** Count the actual parameters. A boolean is a
+  flag only when it picks which behavior runs, not when it is data the
+  function stores or returns. Two or three parameters of the same type
+  are not automatically a missing object.
+- **The checklist (rule 68).** Name the exact entry, G1 to G36, and
+  state its definition before you apply it. If the code does not match
+  the entry as written, there is no finding. Do not use the checklist as
+  a place to file an objection no numbered rule supports.
+- **Null (rules 35, 36).** Only an actual null or nil that a caller can
+  dereference. A language's zero value, an empty string used as a
+  documented and tested special case, and a comma-ok second return are
+  not null.
+- **Command-query (rule 18).** Only when one function both changes state
+  and returns information derived from that state. A command returning
+  an error, or an identifier for the thing it just created, is fine.
+- **Error context (rule 33).** Only when the message fails to name the
+  operation or its subject. A message that names both is done, even if
+  you would have phrased it differently.
+
+### The second sweep: the chapters that get skipped
+
+Hunting stops too early. The rules above are the ones every reviewer
+reaches for; the ones below are where real violations sit unreported.
+Before you write the report, make a deliberate second pass for these,
+and treat a finding here as equal in weight to a duplication:
+
+- **Tests as production code (rules 41 to 45).** Was the test written
+  first, or bolted on? Copy-pasted setups, single-letter names, several
+  concepts per test, assertions a reader must decode, a test that
+  recomputes the answer instead of stating it, a skipped test standing
+  in for an unanswered question, no test at all for new logic.
+- **Speculative construction (rules 52, 53, 57).** A registry, factory,
+  builder, or plugin seam serving exactly one caller. A DSL over a
+  struct literal. An option nobody sets. A framework bought up front.
+- **Emergence (rules 54 to 57).** Logic that cannot be tested because it
+  reaches for the clock, the network, or the filesystem itself. A
+  duplicate structure a shared abstraction would collapse.
+- **Standard nomenclature (rules 9, 56, 69 N3).** A well-known pattern
+  implemented under invented names. Say which pattern and what the
+  members should be called.
+- **Consistency (rule 27, G11).** Two naming conventions, two receiver
+  styles, or two ways of building an error inside one package.
+- **Successive refinement (rule 64).** An author's own note that the
+  code is a first pass, a temporary shape, or something to tidy later.
+  That is the finding; the draft was never meant to ship.
+- **Names at the wrong level (rule 69 N2).** An abstraction whose member
+  names leak one implementation's transport, vendor, or storage.
+
 Calibrate by count. On a diff under two hundred lines, more than about
 eight findings means you are stretching; re-run the three tests on each
 and drop the ones that fail. Report what a senior engineer would block a
@@ -287,6 +345,14 @@ For each finding, give exactly:
 [rule N] path/to/file:line - one-sentence defect.
   Fix: the specific change.
 ```
+
+Before you write the report, apply the severity floor: would a senior
+engineer block this merge over it, or would a reader be misled by it? A
+finding that is merely a preference, a style you would have chosen
+differently, or a rule technically brushed but harmlessly, does not go
+in. If nothing survives, report the clean verdict and nothing else.
+Returning no findings on good code is a correct outcome and the expected
+one; it is never evidence that you looked too lightly.
 
 End with one line: the single highest-value fix to make first. If the
 diff is clean, say so plainly in one sentence and stop. Do not invent
