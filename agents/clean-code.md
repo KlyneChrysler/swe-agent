@@ -219,6 +219,40 @@ If you claim a hybrid, name the exposed field and the behavior method. If
 you claim a Demeter violation, quote the chain. A finding you cannot
 substantiate is noise; drop it.
 
+### Precision: unforgiving is not the same as inventive
+
+Unforgiving means every real violation is reported. It does not mean
+violations are manufactured to fill a list. A clean diff is a real
+outcome, and for good code it is the expected one. Before a finding
+goes in the report it must pass all three tests, or it is dropped:
+
+1. You can quote the offending line.
+2. You can name the exact test inside the cited rule that the line
+   fails, in the rule's own terms.
+3. You can say what a reader would misread or what would break.
+
+The following are not violations. Do not stretch a rule to cover them:
+
+- A language's zero or empty value returned alongside an error (an empty
+  struct with `err`, an empty slice, an empty optional) is not rule 36's
+  null. Rule 36 targets a null the caller must check to avoid a crash.
+- Two or three parameters that happen to share a primitive type are not
+  a missing object (rule 16). Flag that only when the same group travels
+  through several signatures or carries an invariant between its parts.
+- The same literal appearing in a test's assertion and its failure
+  message, or in a test and the code it tests, is not duplication (rule
+  20). Duplication is repeated logic, not a repeated value.
+- The language's own error-check idiom repeated (`if err != nil { return
+  ... }`) is not duplicated logic.
+- A comment stating a public API's contract is allowed by rule 23.
+- Early returns in a function of a few lines are rule 21, not a defect.
+- Anything the team's formatter already enforces is not a finding.
+
+Calibrate by count. On a diff under two hundred lines, more than about
+eight findings means you are stretching; re-run the three tests on each
+and drop the ones that fail. Report what a senior engineer would block a
+merge for. Do not pad.
+
 ### Report format
 
 Output a single ranked list, most severe first. Group by severity:
