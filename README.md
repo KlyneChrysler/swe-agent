@@ -167,6 +167,45 @@ runs the full review-mode hunt over its own diff. Run `/clean-code review`
 before you commit anyway. An unforgiving reviewer keeps finding edges,
 and that is the point.
 
+## Measured
+
+The plugin ships an eval suite under [`evals/clean-code/`](evals/clean-code):
+100 review scenarios (a Go fixture with planted violations, or a clean one,
+plus the rules each should and should not draw) and 100 implement tasks,
+with a Go grader and a headless runner. `evals/clean-code/run.sh review`
+reproduces it.
+
+The first full run measured the reviewer before its precision work:
+
+| Mode | Passed |
+|---|---|
+| Review | 48 / 100 |
+| Implement | 39 / 100 |
+
+Recall was the strong half: only 18 planted defects were missed across 100
+review fixtures. Precision was the weak half: 33 scenarios failed on false
+positives alone, the reviewer averaged 12 citations per review, and all 8
+fixtures written to be clean drew findings. Two rules were added in
+response. A finding must survive three tests (quote the line, name the
+rule's own test it fails, say what breaks), and an absence must be searched
+for before it is claimed, since "no test for this" is a claim about the
+package, not about the hunk.
+
+Re-running the 8 clean fixtures after those changes:
+
+| | Citations | False positives |
+|---|---|---|
+| Before | 75 | 8 |
+| After | 40 | 4 |
+
+Over-reporting on clean code roughly halved. The suite scores a clean
+fixture as passing only at zero findings, and none reach that, so the
+honest summary is that the reviewer is now much quieter on good code
+rather than silent on it. The full suite has not been re-run against the
+current agent, so the 48 and 39 above still describe the earlier version.
+Run-to-run variance is real: one fixture drew 9, 3, and 7 citations on
+three identical runs. Treat single numbers accordingly.
+
 ## License
 
 Apache License 2.0. See [LICENSE](LICENSE).
