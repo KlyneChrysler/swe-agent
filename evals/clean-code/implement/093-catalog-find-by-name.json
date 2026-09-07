@@ -1,0 +1,28 @@
+{
+  "title": "Name lookup that matches the catalog's existing vocabulary",
+  "task": "Add a case-insensitive lookup by exact name to the catalog, and a way to list every product whose name contains a substring, also case-insensitive, where no match is simply an empty result rather than an error. Follow the conventions the package already has.",
+  "seed": {
+    "catalog/catalog.go": "package catalog\n\nimport \"errors\"\n\n// Product is a sellable item.\ntype Product struct {\n\tID   string\n\tSKU  string\n\tName string\n}\n\n// ErrNotFound reports a lookup that matched nothing.\nvar ErrNotFound = errors.New(\"product not found\")\n\n// Catalog is an in-memory product list.\ntype Catalog struct {\n\tproducts []Product\n}\n\n// New builds a Catalog from products.\nfunc New(products []Product) Catalog {\n\treturn Catalog{products: products}\n}\n\n// FindByID returns the product with the given ID.\nfunc (c Catalog) FindByID(id string) (Product, error) {\n\treturn c.find(func(p Product) bool { return p.ID == id })\n}\n\n// FindBySKU returns the product with the given SKU.\nfunc (c Catalog) FindBySKU(sku string) (Product, error) {\n\treturn c.find(func(p Product) bool { return p.SKU == sku })\n}\n\nfunc (c Catalog) find(matches func(Product) bool) (Product, error) {\n\tfor _, product := range c.products {\n\t\tif matches(product) {\n\t\t\treturn product, nil\n\t\t}\n\t}\n\treturn Product{}, ErrNotFound\n}\n",
+    "catalog/catalog_test.go": "package catalog\n\nimport \"testing\"\n\nfunc sampleCatalog() Catalog {\n\treturn New([]Product{\n\t\t{ID: \"1\", SKU: \"PEN-BLK\", Name: \"Black Pen\"},\n\t\t{ID: \"2\", SKU: \"PAD-A4\", Name: \"A4 Pad\"},\n\t})\n}\n\nfunc TestFindByIDReturnsMatch(t *testing.T) {\n\tproduct, err := sampleCatalog().FindByID(\"2\")\n\tif err != nil || product.Name != \"A4 Pad\" {\n\t\tt.Fatalf(\"FindByID = %+v, %v\", product, err)\n\t}\n}\n\nfunc TestFindBySKUReportsMissing(t *testing.T) {\n\tif _, err := sampleCatalog().FindBySKU(\"NOPE\"); err != ErrNotFound {\n\t\tt.Fatalf(\"err = %v, want ErrNotFound\", err)\n\t}\n}\n"
+  },
+  "rules_exercised": [
+    8,
+    68,
+    1,
+    36,
+    20
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_exists:FindByName",
+    "symbol_absent:GetByName",
+    "symbol_absent:LookupByName",
+    "symbol_absent:SearchByName",
+    "no_nil_return",
+    "no_panic"
+  ]
+}

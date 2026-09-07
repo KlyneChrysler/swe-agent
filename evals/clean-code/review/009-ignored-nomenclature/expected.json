@@ -1,0 +1,10 @@
+{
+  "title": "A stack with Push and Pop called Pile with Put and Take",
+  "must_find": [
+    {"rule": 9, "entry": "N3", "file": "undo.go", "symbol": "Pile",
+     "why": "this is a LIFO stack; the standard names are Stack, Push and Pop, not an invented Pile/Put/Take vocabulary"}
+  ],
+  "must_not_find": [
+    {"rule": 18, "why": "a pop that returns the removed item is the standard stack contract, not a command mixed with an unrelated query"}
+  ]
+}

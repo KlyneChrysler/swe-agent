@@ -1,0 +1,23 @@
+{
+  "title": "Session lookup that may start one, named honestly",
+  "task": "Package `session` keeps sessions keyed by token in memory. Callers hand over a token and need the session for it; when no session exists for that token yet, one is started with the given time as its creation time. Also provide a way to ask whether a token has a session without starting one. Name things so the caller can tell which call may create something. Test that repeated calls with one token yield the same session and that the query never creates one.",
+  "rules_exercised": [
+    17,
+    18,
+    36,
+    69
+  ],
+  "entries_exercised": [
+    "N7"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_nil_return",
+    "symbol_absent:GetSession",
+    "symbol_absent:Get"
+  ]
+}

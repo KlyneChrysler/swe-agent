@@ -1,0 +1,24 @@
+{
+  "title": "Add to a file whose style has drifted",
+  "task": "Add `ComputeDiscountedTotal(subtotalCents, discountBasisPoints int64) int64` to package `pricing`: apply the discount to the subtotal first, then tax at the package's rate. While you are in that file, leave it in the same style as the rest of our Go code. Test a 10% discount and no discount.",
+  "seed": {
+    "pricing/pricing.go": "package pricing\n\n// Tax rate in basis points applied to every taxable line.\nconst TaxRateBasisPoints = 1200\n\nfunc calc_tax(subtotalCents int64) int64 {\n\treturn subtotalCents * get_tax_rate() / 10000\n}\n\nfunc get_tax_rate() int64 {\n\treturn TaxRateBasisPoints\n}\n\n// ComputeTotal returns the subtotal plus tax.\nfunc ComputeTotal(subtotalCents int64) int64 {\n\treturn subtotalCents + calc_tax(subtotalCents)\n}\n"
+  },
+  "rules_exercised": [
+    27,
+    64,
+    1,
+    20
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "gofmt_clean",
+    "symbol_absent:calc_tax",
+    "symbol_absent:get_tax_rate",
+    "symbol_exists:ComputeDiscountedTotal"
+  ]
+}

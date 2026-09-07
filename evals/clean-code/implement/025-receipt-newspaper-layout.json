@@ -1,0 +1,20 @@
+{
+  "title": "Render a receipt in one file laid out top-down",
+  "task": "In package `receipt`, write `Render(r Receipt) string` for a shop receipt: a header line with the shop name, one line per item as `name  qty x unit = line total`, then subtotal, tax at the receipt's tax rate in basis points, and total, with every amount in cents rendered as dollars. Keep it in one production file laid out so I can read the overall shape at the top and the details further down. Test a two-item receipt against the exact expected text.",
+  "rules_exercised": [
+    25,
+    13,
+    46,
+    11
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_files:1",
+    "no_comments_in_funcs",
+    "symbol_exists:Render"
+  ]
+}

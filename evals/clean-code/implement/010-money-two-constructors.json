@@ -1,0 +1,21 @@
+{
+  "title": "Money built from cents or from a decimal string",
+  "task": "In package `money`, a `Money` value can be created from an integer count of cents or from a decimal string like \"12.34\" (at most two decimals, optional leading minus). Both must produce the same value for the same amount, and the string form should reject junk such as \"1.2.3\" or \"12.345\" with an error that quotes the input. Give `Money` a `String()` that renders \"12.34\". Tests should cover both ways of building, equality between them, and the rejected strings.",
+  "rules_exercised": [
+    7,
+    16,
+    19,
+    33
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_bool_params",
+    "max_params:2",
+    "symbol_exists:Money",
+    "no_panic"
+  ]
+}

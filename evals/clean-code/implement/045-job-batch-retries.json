@@ -1,0 +1,20 @@
+{
+  "title": "Run prioritized jobs with retries and a shallow loop",
+  "task": "In package `jobs`, run a batch of jobs in priority order (highest first, ties by submission order): each job has a name, a priority, and a `Run() error`; a job that fails is retried up to two more times, and a job marked cancelled is skipped. Return a report of what succeeded, what failed after all retries, and what was skipped. I would like the loop to stay shallow enough to read in one glance. Test a job that succeeds on its third try, one that never succeeds, and a cancelled one.",
+  "rules_exercised": [
+    11,
+    21,
+    13,
+    12
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_nesting:2",
+    "no_nil_return",
+    "no_bool_params"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Audit logging around a ledger that stays plain",
+  "task": "Every `Deposit` and `Withdraw` must now be audit-logged as one line, `deposit 500 -> 1500` and `withdraw 200 rejected: insufficient funds`, to a writer we choose at startup. `Balance` queries are not logged. Keep the Ledger itself free of any logging, and keep the existing behaviour and tests for it intact.",
+  "seed": {
+    "ledger/ledger.go": "package ledger\n\nimport \"errors\"\n\n// ErrInsufficient reports a withdrawal larger than the balance.\nvar ErrInsufficient = errors.New(\"insufficient funds\")\n\n// Ledger tracks a single account balance in cents.\ntype Ledger struct {\n\tbalance int\n}\n\n// Deposit adds cents to the balance.\nfunc (l *Ledger) Deposit(cents int) {\n\tl.balance += cents\n}\n\n// Withdraw removes cents from the balance when enough is available.\nfunc (l *Ledger) Withdraw(cents int) error {\n\tif cents > l.balance {\n\t\treturn ErrInsufficient\n\t}\n\tl.balance -= cents\n\treturn nil\n}\n\n// Balance answers the current balance in cents.\nfunc (l *Ledger) Balance() int {\n\treturn l.balance\n}\n",
+    "ledger/ledger_test.go": "package ledger\n\nimport \"testing\"\n\nfunc TestWithdrawBelowBalanceSucceeds(t *testing.T) {\n\tvar ledger Ledger\n\tledger.Deposit(1000)\n\tif err := ledger.Withdraw(400); err != nil {\n\t\tt.Fatalf(\"Withdraw: %v\", err)\n\t}\n\tif got := ledger.Balance(); got != 600 {\n\t\tt.Fatalf(\"Balance = %d, want 600\", got)\n\t}\n}\n\nfunc TestWithdrawAboveBalanceIsRejected(t *testing.T) {\n\tvar ledger Ledger\n\tledger.Deposit(100)\n\tif err := ledger.Withdraw(200); err != ErrInsufficient {\n\t\tt.Fatalf(\"err = %v, want ErrInsufficient\", err)\n\t}\n}\n"
+  },
+  "rules_exercised": [
+    51,
+    47,
+    30,
+    49,
+    20
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_exists:Ledger",
+    "no_global_mutable",
+    "no_smell_names",
+    "max_files:3",
+    "no_panic"
+  ]
+}

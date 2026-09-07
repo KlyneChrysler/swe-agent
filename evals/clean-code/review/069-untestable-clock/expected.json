@@ -1,0 +1,13 @@
+{
+  "title": "Token expiry reads the wall clock directly so the boundary cannot be verified",
+  "must_find": [
+    {"rule": 54, "file": "token.go", "symbol": "IsExpired",
+     "why": "calls time.Now inside the predicate; the moment of expiry cannot be tested without a clock dependency"},
+    {"rule": 54, "file": "token.go", "symbol": "Issue",
+     "why": "stamps time.Now itself, so no test can pin the exact ExpiresAt it produces"}
+  ],
+  "must_not_find": [
+    {"rule": 70, "entry": "T5", "why": "the untested expiry boundary is the consequence of the hidden clock; the defect is rule 54, not a missing test"},
+    {"rule": 28, "why": "Token is a data structure; exported fields are deliberate"}
+  ]
+}

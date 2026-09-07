@@ -1,0 +1,10 @@
+{
+  "title": "Boolean return codes force a check after every call and lose the reason",
+  "must_find": [
+    {"rule": 32, "file": "listen.go", "symbol": "ListenAddress",
+     "why": "parseHost, parsePort and ListenAddress signal failure with a bare bool so the caller must test after each step and can never say why the address was rejected; return an error"}
+  ],
+  "must_not_find": [
+    {"rule": 11, "why": "ListenAddress is flat guards with no nesting past one level"}
+  ]
+}

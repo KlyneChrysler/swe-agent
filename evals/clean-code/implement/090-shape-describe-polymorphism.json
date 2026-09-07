@@ -1,0 +1,21 @@
+{
+  "title": "Shapes described without a type switch",
+  "task": "Implement `Shape` in package `geometry` with circles, rectangles, and right triangles, each answering `Area()` and `Perimeter()`, plus `Describe(s Shape) string` producing lines like `circle r=2.0 area=12.57 perimeter=12.57` and `rectangle 3.0x4.0 area=12.00 perimeter=14.00`. Adding a shape later should mean adding a type, not editing Describe.",
+  "rules_exercised": [
+    49,
+    14,
+    68,
+    57
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_exists:Shape",
+    "symbol_exists:Describe",
+    "no_panic",
+    "no_bool_params"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "One file, two authors' styles",
+  "must_find": [
+    {"rule": 27, "file": "invoice.go", "symbol": "Invoice",
+     "why": "snake_case beside camelCase, `self` beside `inv` receivers, and errors built two different ways in neighbouring functions; the file looks written by people arguing"}
+  ],
+  "must_not_find": [
+    {"rule": 33, "why": "both parse errors carry the operation and the input"}
+  ]
+}

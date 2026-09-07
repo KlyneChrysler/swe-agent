@@ -1,0 +1,29 @@
+{
+  "title": "List operations named so filter is never ambiguous",
+  "task": "Add two operations on `[]User` to package `users`: one that removes blocked users from a list, and one that keeps only users active as of a given time. Both return new slices and leave the input alone. Name them so nobody has to ask whether \"filter\" means keep or drop. Test each with a mixed list, including a case with an empty result.",
+  "seed": {
+    "users/user.go": "package users\n\nimport \"time\"\n\nconst activeWindow = 30 * 24 * time.Hour\n\n// User is one account holder.\ntype User struct {\n\tid        string\n\tblocked   bool\n\tlastLogin time.Time\n}\n\n// New returns an unblocked user who last logged in at lastLogin.\nfunc New(id string, lastLogin time.Time) User {\n\treturn User{id: id, lastLogin: lastLogin}\n}\n\n// ID returns the user's identifier.\nfunc (u User) ID() string {\n\treturn u.id\n}\n\n// Block returns a copy of the user marked as blocked.\nfunc (u User) Block() User {\n\tu.blocked = true\n\treturn u\n}\n\n// IsBlocked reports whether the user has been blocked.\nfunc (u User) IsBlocked() bool {\n\treturn u.blocked\n}\n\n// IsActive reports whether the user logged in within the active window before now.\nfunc (u User) IsActive(now time.Time) bool {\n\treturn now.Sub(u.lastLogin) <= activeWindow\n}\n"
+  },
+  "rules_exercised": [
+    2,
+    3,
+    1,
+    69
+  ],
+  "entries_exercised": [
+    "N4"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_absent:Filter",
+    "symbol_absent:FilterUsers",
+    "symbol_absent:FilterBlocked",
+    "symbol_absent:FilterActive",
+    "no_nil_return",
+    "max_params:2"
+  ]
+}

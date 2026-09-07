@@ -1,0 +1,10 @@
+{
+  "title": "One method parses a line and records the result",
+  "must_find": [
+    {"rule": 12, "entry": "G30", "file": "ledger.go", "symbol": "ParseAndRecord",
+     "why": "the name says And: parsing a line into an Entry and appending it to the ledger are two things; split into parseEntry and Record"}
+  ],
+  "must_not_find": [
+    {"rule": 33, "why": "both errors name the operation and the offending line"}
+  ]
+}

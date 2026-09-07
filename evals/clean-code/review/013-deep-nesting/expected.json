@@ -1,0 +1,10 @@
+{
+  "title": "Loop inside if inside loop inside if",
+  "must_find": [
+    {"rule": 11, "file": "booking.go", "symbol": "FirstConflict",
+     "why": "four levels of indentation; the inner search over a room's bookings belongs in its own function"}
+  ],
+  "must_not_find": [
+    {"rule": 36, "why": "no match returns the zero Booking with false, not nil"}
+  ]
+}

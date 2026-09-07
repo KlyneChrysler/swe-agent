@@ -1,0 +1,26 @@
+{
+  "title": "Parse a line item, reusing the package's money parsing",
+  "task": "Add `ParseLineItem(text string) (LineItem, error)` to package `billing`. A line item looks like `Blue Widget x3 @ 12.50`: a description, a quantity after `x`, and a unit price after `@`, and `LineItem` should expose the description, the quantity, and the line total in cents. Reuse what the package already has for money rather than writing it again. Test a normal line, a quantity of zero, and a malformed price.",
+  "seed": {
+    "billing/money.go": "package billing\n\nimport (\n\t\"fmt\"\n\t\"strconv\"\n\t\"strings\"\n)\n\n// ParseCents converts a decimal amount such as \"12.34\" or \"7\" into cents.\nfunc ParseCents(text string) (int64, error) {\n\twhole, fraction, _ := strings.Cut(text, \".\")\n\tif whole == \"\" || len(fraction) > 2 {\n\t\treturn 0, fmt.Errorf(\"billing: parse cents %q: want digits with at most two decimals\", text)\n\t}\n\tcents, err := strconv.ParseInt(whole+padFraction(fraction), 10, 64)\n\tif err != nil {\n\t\treturn 0, fmt.Errorf(\"billing: parse cents %q: %w\", text, err)\n\t}\n\treturn cents, nil\n}\n\nfunc padFraction(fraction string) string {\n\treturn (fraction + \"00\")[:2]\n}\n"
+  },
+  "rules_exercised": [
+    20,
+    1,
+    8,
+    33
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_exists:ParseCents",
+    "symbol_exists:ParseLineItem",
+    "symbol_absent:parseCents",
+    "symbol_absent:parseMoney",
+    "symbol_absent:parsePrice",
+    "max_nesting:2"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Shipping cost from a config whose kind is one of three values",
+  "task": "Our shipping configuration has a `Kind` that is one of three values: `flat` (a fixed fee), `weight` (a rate per kilogram, weight rounded up to whole kilograms), and `free` (no charge when the subtotal is at or above a threshold, otherwise the flat fee). In package `shipping`, build a shipping policy from a `Config` struct with `Kind string`, `FeeCents int64`, `PerKgCents int64`, and `FreeAboveCents int64`, and give it a `Cost(order Order) int64`. I expect to add a fourth kind next quarter, so please make that cheap to do. Test each kind with one order.",
+  "seed": {
+    "shipping/order.go": "package shipping\n\n// Order is the part of a checkout that shipping cost depends on.\ntype Order struct {\n\tSubtotalCents int64\n\tWeightGrams   int\n}\n"
+  },
+  "rules_exercised": [
+    14,
+    49,
+    20,
+    7
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "single_switch:Kind",
+    "symbol_exists:Config",
+    "symbol_exists:Cost"
+  ]
+}

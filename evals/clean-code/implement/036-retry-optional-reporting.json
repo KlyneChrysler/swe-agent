@@ -1,0 +1,21 @@
+{
+  "title": "Retry with reporting that some callers want silenced",
+  "task": "Write `Retry` in package `retry` that calls an operation up to a given number of attempts until it returns nil, reporting each failed attempt with the attempt number and the error. Some callers want the reports written to a log and some want nothing reported at all; do not make the silent callers pass in nothing. Test that a failing-then-succeeding operation is called the right number of times and that the silent variant works.",
+  "rules_exercised": [
+    36,
+    16,
+    50,
+    35
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_nil_return",
+    "no_bool_params",
+    "max_params:3",
+    "symbol_exists:Retry"
+  ]
+}

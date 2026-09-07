@@ -1,0 +1,18 @@
+{
+  "mode": "review",
+  "scenario": "002-disinforming-collection-name",
+  "title": "A map named as if it were a list",
+  "clean_fixture": false,
+  "hits": [
+    {
+      "rule": 2,
+      "file": "warehouse.go",
+      "symbol": "Warehouse",
+      "why": "`skuList` is a map keyed by SKU, not a list; the name disinforms"
+    }
+  ],
+  "misses": [],
+  "false_positives": [],
+  "citations": 8,
+  "pass": true
+}

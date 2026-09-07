@@ -1,0 +1,14 @@
+{
+  "title": "Report switches on Format in two places and must be edited for every new format",
+  "must_find": [
+    {"rule": 49, "file": "report.go", "symbol": "Export",
+     "why": "adding a format means opening Report and editing a working method instead of adding an exporter type"},
+    {"rule": 14, "entry": "G23", "file": "report.go", "symbol": "FileName",
+     "why": "the same Format discriminator is switched on a second time; polymorphism belongs here"},
+    {"rule": 16, "entry": "G15", "file": "report.go", "symbol": "Export",
+     "why": "format is a selector argument that picks which of two behaviours runs"}
+  ],
+  "must_not_find": [
+    {"rule": 20, "why": "csv and json share no lines; the duplication is the repeated switch, cited under G23"}
+  ]
+}

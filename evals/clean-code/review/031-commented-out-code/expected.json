@@ -1,0 +1,12 @@
+{
+  "title": "Commented-out branch and a banner section marker",
+  "must_find": [
+    {"rule": 24, "entry": "C5", "file": "summary.go", "symbol": "Summary",
+     "why": "a commented-out if block sits in the body; version control remembers it"},
+    {"rule": 24, "file": "summary.go", "symbol": "formatCents",
+     "why": "a dashed banner marks a helpers section; banner comments are noise"}
+  ],
+  "must_not_find": [
+    {"rule": 25, "why": "Summary is above the helper it calls"}
+  ]
+}

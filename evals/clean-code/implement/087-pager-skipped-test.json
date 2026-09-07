@@ -1,0 +1,25 @@
+{
+  "title": "Configurable page size with a skipped test in the way",
+  "task": "Make the page size configurable instead of fixed at three: `Pages(items []string, size int) []Page`. Someone skipped a test in that package a while ago; sort that out properly rather than leaving it, and if it turns out to be a bug, check the cases around it too (a single partial page, an exact multiple, no items at all).",
+  "seed": {
+    "pager/pager.go": "package pager\n\n// Page is one window of a list, numbered from one.\ntype Page struct {\n\tItems  []string\n\tNumber int\n\tLast   bool\n}\n\nconst pageSize = 3\n\n// Pages splits items into fixed-size pages.\nfunc Pages(items []string) []Page {\n\tvar pages []Page\n\tfor start := 0; start < len(items); start += pageSize {\n\t\tend := start + pageSize\n\t\tif end > len(items) {\n\t\t\tend = len(items)\n\t\t}\n\t\tpages = append(pages, Page{Items: items[start:end], Number: len(pages) + 1, Last: start+pageSize == len(items)})\n\t}\n\treturn pages\n}\n",
+    "pager/pager_test.go": "package pager\n\nimport \"testing\"\n\nfunc TestPagesOfExactMultiple(t *testing.T) {\n\tpages := Pages([]string{\"a\", \"b\", \"c\", \"d\", \"e\", \"f\"})\n\tif len(pages) != 2 || !pages[1].Last {\n\t\tt.Fatalf(\"pages = %+v\", pages)\n\t}\n}\n\nfunc TestLastPartialPageIsMarkedLast(t *testing.T) {\n\tt.Skip(\"flaky, investigate later\")\n\tpages := Pages([]string{\"a\", \"b\", \"c\", \"d\"})\n\tif !pages[1].Last {\n\t\tt.Fatalf(\"last page not marked: %+v\", pages)\n\t}\n}\n"
+  },
+  "rules_exercised": [
+    68,
+    70,
+    64,
+    36
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_nil_return",
+    "no_bool_params",
+    "max_params:2",
+    "symbol_exists:Pages"
+  ]
+}

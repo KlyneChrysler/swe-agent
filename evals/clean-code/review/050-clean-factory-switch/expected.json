@@ -1,0 +1,9 @@
+{
+  "title": "Clean: one switch, buried in a factory, behind polymorphism",
+  "must_find": [],
+  "must_not_find": [
+    {"rule": 14, "why": "the switch on Channel appears exactly once, inside the factory that creates polymorphic notifiers"},
+    {"rule": 36, "why": "the nil Notifier is returned only alongside a non-nil error"},
+    {"rule": 20, "why": "two one-line implementations of one interface are polymorphism, not duplication"}
+  ]
+}

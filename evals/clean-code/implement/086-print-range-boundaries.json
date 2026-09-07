@@ -1,0 +1,21 @@
+{
+  "title": "Print-dialog page ranges with the edges tested",
+  "task": "Implement `ranges.Parse(text string) ([]int, error)` in the spirit of a print dialog: `3-7` gives 3 through 7, `5` gives 5, and `1-3,8,10-11` gives all of them in order. A reversed range, empty text, a negative or non-numeric piece, and a stray comma are errors that quote the offending piece. Test the edges as carefully as the middle.",
+  "rules_exercised": [
+    68,
+    70,
+    36,
+    33
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_panic",
+    "no_nil_return",
+    "max_nesting:2",
+    "max_params:2"
+  ]
+}

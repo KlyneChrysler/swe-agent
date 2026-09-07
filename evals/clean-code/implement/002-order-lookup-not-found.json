@@ -1,0 +1,19 @@
+{
+  "title": "Look up an order by id when the id may be unknown",
+  "task": "In package `orders`, write an in-memory `Book` that stores orders (id, total in cents, status) and lets me look one up by id. Most callers of the lookup just want to render the order's status and total, and when the id is unknown they should be able to do that without a crash and without a not-there check first; make the missing case an explicit part of the API rather than a sentinel. Include tests for a known id and an unknown id.",
+  "rules_exercised": [
+    36,
+    35,
+    28
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_nil_return",
+    "no_panic",
+    "symbol_exists:Book"
+  ]
+}

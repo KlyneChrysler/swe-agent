@@ -1,0 +1,23 @@
+{
+  "title": "One-time passcodes with an SMS vendor that does not exist yet",
+  "task": "Build a one-time-passcode flow in package `otp`: `Issue(phone string) (string, error)` generates a six-digit code and sends it to the phone, and `Verify(phone, code string) error` accepts the code once and only once. The SMS vendor has not given us their API yet, so build the flow so their client can be plugged in when it arrives without changing the flow. Tests must not depend on randomness or on the vendor.",
+  "rules_exercised": [
+    39,
+    50,
+    49,
+    44,
+    68
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_todo",
+    "no_global_mutable",
+    "no_panic",
+    "symbol_exists:New",
+    "no_nil_return"
+  ]
+}

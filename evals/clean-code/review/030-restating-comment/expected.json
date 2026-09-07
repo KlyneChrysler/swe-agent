@@ -1,0 +1,10 @@
+{
+  "title": "Every line restated in a comment",
+  "must_find": [
+    {"rule": 24, "entry": "C3", "file": "active.go", "symbol": "CountActive",
+     "why": "five comments repeat exactly what the code beneath them says"}
+  ],
+  "must_not_find": [
+    {"rule": 11, "why": "the function is seven lines of code with two levels of nesting"}
+  ]
+}

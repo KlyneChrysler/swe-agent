@@ -1,0 +1,12 @@
+{
+  "title": "Total test recomputes the answer in float, and the regression test covers only the reported input",
+  "must_find": [
+    {"rule": 45, "file": "total_test.go", "symbol": "TestTotalMatchesRecomputation",
+     "why": "the test is less correct than production: it recomputes money in floating point instead of stating the expected cents"},
+    {"rule": 70, "entry": "T6", "file": "total_test.go", "symbol": "TestZeroQuantityLineRegression",
+     "why": "the fix for zero quantity is pinned by one input; no test hunts the neighbours (empty slice, 100 percent discount, negative quantity)"}
+  ],
+  "must_not_find": [
+    {"rule": 68, "entry": "G26", "why": "production Total uses integer cents; the float is confined to the test"}
+  ]
+}

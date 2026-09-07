@@ -1,0 +1,24 @@
+{
+  "title": "Extend a catalog whose vocabulary is already chosen",
+  "task": "Extend package `catalog` so a product can carry a percentage discount (0 to 100) and I can retrieve the discounted price in cents for a SKU, rounded down. Read the existing file and follow its conventions for method names and error messages. Add tests for a discounted product, an undiscounted one, and an unknown SKU.",
+  "seed": {
+    "catalog/catalog.go": "package catalog\n\nimport \"fmt\"\n\n// Product is a sellable item in the catalog.\ntype Product struct {\n\tSKU        string\n\tName       string\n\tPriceCents int64\n}\n\n// Catalog holds products keyed by SKU.\ntype Catalog struct {\n\tproducts map[string]Product\n}\n\n// New returns an empty Catalog.\nfunc New() *Catalog {\n\treturn &Catalog{products: map[string]Product{}}\n}\n\n// Add puts product into the catalog, replacing any product with the same SKU.\nfunc (c *Catalog) Add(product Product) {\n\tc.products[product.SKU] = product\n}\n\n// FetchProduct returns the product for sku.\nfunc (c *Catalog) FetchProduct(sku string) (Product, error) {\n\tproduct, ok := c.products[sku]\n\tif !ok {\n\t\treturn Product{}, fmt.Errorf(\"catalog: fetch product %q: not in catalog\", sku)\n\t}\n\treturn product, nil\n}\n\n// FetchPrice returns the price in cents for sku.\nfunc (c *Catalog) FetchPrice(sku string) (int64, error) {\n\tproduct, err := c.FetchProduct(sku)\n\tif err != nil {\n\t\treturn 0, err\n\t}\n\treturn product.PriceCents, nil\n}\n"
+  },
+  "rules_exercised": [
+    1,
+    8,
+    15,
+    20
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_absent:GetDiscountedPrice",
+    "symbol_absent:GetDiscount",
+    "symbol_absent:RetrieveDiscountedPrice",
+    "no_nil_return"
+  ]
+}

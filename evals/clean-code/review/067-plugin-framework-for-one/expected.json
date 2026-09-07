@@ -1,0 +1,12 @@
+{
+  "title": "A plugin registry with factories for one plugin, and an interface for a one-line greeter",
+  "must_find": [
+    {"rule": 52, "file": "registry.go", "symbol": "Registry",
+     "why": "a registry, factory functions, and lookup by name are a framework bought up front for a single upper-casing transform"},
+    {"rule": 57, "file": "greeter.go", "symbol": "Greeter",
+     "why": "an interface, an unexported struct, and a constructor exist for one implementation of a one-line function"}
+  ],
+  "must_not_find": [
+    {"rule": 36, "why": "`return nil, err` with a non-nil error is the Go idiom, not a null result"}
+  ]
+}

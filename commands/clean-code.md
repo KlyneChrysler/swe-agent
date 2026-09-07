@@ -1,21 +1,24 @@
 ---
-description: Run the unforgiving Clean Code review on your current changes before you commit.
+description: Implement a task as unforgiving Clean Code, or review your current changes against it. /clean-code <task> builds it; /clean-code review [target] reviews.
 ---
 
-Review the current code changes against the complete Clean Code standard
-and report ranked, located, fixable violations.
+Dispatch the `clean-code` agent, the unforgiving Clean Code engineer.
 
 Steps:
 
 1. Load the `clean-code` skill if it is not already in context.
-2. Determine what to review: uncommitted changes (`git diff HEAD`) by
-   default; the last commit if the tree is clean; or whatever the user
-   named in their arguments ($ARGUMENTS).
-3. Dispatch the `clean-code` agent to review that diff. It reads the
-   surrounding code, hunts every rule (duplication and null first),
-   verifies each finding, and returns a ranked list.
-4. Relay the agent's verdict. Do not soften it. If the user asks, apply
-   the fixes; otherwise stop at the verdict.
-
-If $ARGUMENTS names files, a PR, or a commit range, review that. Otherwise
-review the working tree.
+2. Decide the mode from $ARGUMENTS:
+   - Starts with `review`: review mode. The target is the rest of the
+     arguments (files, a PR, a commit range), or the uncommitted changes
+     (`git diff HEAD`) if none, or the last commit if the tree is clean.
+   - Anything else: implement mode. The arguments are the task.
+   - Empty: review mode on the working tree.
+3. Dispatch the `clean-code` agent in that mode. In implement mode it
+   reads the surrounding code, names the pieces, writes test-first in
+   small cycles, refines against the full checklist until a pass finds
+   nothing, and reports what it built and how the tests ran. In review
+   mode it hunts every rule, verifies each finding, and returns a ranked
+   list.
+4. Relay the agent's report. Do not soften a review. If a review is
+   followed by "apply the fixes", dispatch the agent again in implement
+   mode with the findings as the task.

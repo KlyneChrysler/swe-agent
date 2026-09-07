@@ -1,0 +1,20 @@
+{
+  "title": "Order lifecycle with moves checked in one place",
+  "task": "Model an order lifecycle in package `orders`: states `new`, `paid`, `shipped`, `delivered`, `cancelled`, kept in a field named `state`. Allowed moves are new to paid, paid to shipped, shipped to delivered, and cancel from new or paid. Callers need to move an order and, separately, to ask its current state, and an illegal move must produce an error that says which move was attempted from which state. Avoid checking the state field in more than one place. Test one legal chain and two illegal moves.",
+  "rules_exercised": [
+    18,
+    14,
+    33,
+    19
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "single_switch:state",
+    "symbol_exists:Order",
+    "no_panic"
+  ]
+}

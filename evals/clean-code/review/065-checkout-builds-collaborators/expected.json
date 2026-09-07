@@ -1,0 +1,11 @@
+{
+  "title": "Checkout constructs its own receipt store and mailer inside the business method",
+  "must_find": [
+    {"rule": 50, "file": "checkout.go", "symbol": "Complete",
+     "why": "business logic calls NewReceipts and NewWriterMailer itself instead of receiving ready collaborators; construction is mixed with use"}
+  ],
+  "must_not_find": [
+    {"rule": 37, "why": "io.Writer is a standard interface accepted once at the mailer's constructor, not passed through the system"},
+    {"rule": 57, "why": "Mailer is an interface with a real seam (writer today, SMTP tomorrow), not an interface for its own sake"}
+  ]
+}

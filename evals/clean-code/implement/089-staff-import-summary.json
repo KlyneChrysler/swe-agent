@@ -1,0 +1,21 @@
+{
+  "title": "Employee CSV summary at three levels of abstraction",
+  "task": "Implement `staff.Summarize(r io.Reader) (Summary, error)` over CSV rows `name,department,salary_cents,start_date` (dates as `2006-01-02`): headcount per department, average salary per department in whole cents rounded down, and the name of the longest-serving employee overall. Blank lines are ignored and a bad row is an error naming its line number. Keep parsing rows, aggregating departments, and picking the veteran at their own levels.",
+  "rules_exercised": [
+    13,
+    12,
+    11,
+    68
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_nesting:2",
+    "max_params:3",
+    "no_panic",
+    "no_nil_return"
+  ]
+}

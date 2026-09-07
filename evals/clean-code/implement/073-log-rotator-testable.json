@@ -1,0 +1,22 @@
+{
+  "title": "Daily log rotation testable without clock or disk",
+  "task": "Implement `rotate.Rotator`: given a log path like `app.log`, when the calendar date has changed since the last write it renames the file to `app.log.YYYY-MM-DD` (yesterday's date) and then appends the line to a fresh `app.log`; otherwise it just appends. It must be fully testable without touching the real clock or the real filesystem, and the tests must not sleep.",
+  "rules_exercised": [
+    54,
+    50,
+    44,
+    37,
+    52
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_global_mutable",
+    "no_panic",
+    "symbol_exists:New",
+    "max_params:3"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "title": "CSV and TSV exporters in two files share every line but the separator",
+  "must_find": [
+    {"rule": 55, "file": "tsv.go", "symbol": "ExportTSV",
+     "why": "the whole algorithm of ExportCSV is repeated in another file with only the separator changed; one exporter parameterised by separator removes it"}
+  ],
+  "must_not_find": [
+    {"rule": 16, "why": "header and rows are two arguments that belong to the export; an options struct is not needed"},
+    {"rule": 68, "entry": "G1", "why": "the output is delimited text produced by Go code, not a second language in the source"}
+  ]
+}

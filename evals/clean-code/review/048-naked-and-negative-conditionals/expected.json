@@ -1,0 +1,12 @@
+{
+  "title": "A naked three-clause condition and a double negative",
+  "must_find": [
+    {"rule": 68, "entry": "G28", "file": "invoice.go", "symbol": "LateFeeCents",
+     "why": "the overdue-and-undisputed condition is spelled out inline; extract inv.owesLateFee(now)"},
+    {"rule": 68, "entry": "G29", "file": "invoice.go", "symbol": "Status",
+     "why": "`!inv.IsNotSettled()` is a double negative; name the positive IsSettled"}
+  ],
+  "must_not_find": [
+    {"rule": 4, "why": "the fee is a named constant and the status strings are the returned values"}
+  ]
+}

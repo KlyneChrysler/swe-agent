@@ -1,0 +1,13 @@
+{
+  "title": "Throttle tests: one copy-pasted with cryptic names, one sleeping through a real window",
+  "must_find": [
+    {"rule": 42, "file": "throttle_test.go", "symbol": "TestThrottle",
+     "why": "test code held to no rule: three copy-pasted setups, names c/x/y/z, `!= false` comparisons, messages that say nothing"},
+    {"rule": 44, "entry": "T9", "file": "throttle_test.go", "symbol": "TestThrottleAllowsAgainAfterWindow",
+     "why": "sleeps over a second of wall time although the clock is injectable and could be advanced"}
+  ],
+  "must_not_find": [
+    {"rule": 18, "why": "Allow is an atomic try-acquire; splitting the check from the record would race"},
+    {"rule": 54, "why": "the production Throttle takes its clock as a dependency and is fully testable"}
+  ]
+}

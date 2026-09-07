@@ -1,0 +1,25 @@
+{
+  "title": "Captions that must not assume the listing's window size",
+  "task": "Add a `summary` package with `Captions(items []string) []string`, one caption per window like `showing 26-50 of 120`, and `Footer(items []string) string` like `5 pages of 25`. The window size is `listing`'s decision; `summary` must not assume it or repeat it.",
+  "seed": {
+    "listing/listing.go": "package listing\n\n// Window is one page of results starting at Offset.\ntype Window struct {\n\tOffset int\n\tItems  []string\n}\n\nconst windowSize = 25\n\n// Windows splits items into consecutive windows of fixed size.\nfunc Windows(items []string) []Window {\n\twindows := []Window{}\n\tfor offset := 0; offset < len(items); offset += windowSize {\n\t\twindows = append(windows, Window{Offset: offset, Items: items[offset:min(offset+windowSize, len(items))]})\n\t}\n\treturn windows\n}\n",
+    "listing/listing_test.go": "package listing\n\nimport \"testing\"\n\nfunc TestWindowsSplitsIntoTwentyFives(t *testing.T) {\n\titems := make([]string, 60)\n\twindows := Windows(items)\n\tif len(windows) != 3 || windows[2].Offset != 50 || len(windows[2].Items) != 10 {\n\t\tt.Fatalf(\"windows = %+v\", windows)\n\t}\n}\n"
+  },
+  "rules_exercised": [
+    68,
+    4,
+    20,
+    10
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_files:3",
+    "no_global_mutable",
+    "no_panic",
+    "no_nil_return"
+  ]
+}

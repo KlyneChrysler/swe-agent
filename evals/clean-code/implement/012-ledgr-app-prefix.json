@@ -1,0 +1,24 @@
+{
+  "title": "A ledger package inside an app called Ledgr",
+  "task": "We're building an app called Ledgr. In package `ledger` add an entry type (a timestamp, a memo, and a signed amount in cents), a ledger that accumulates entries, and a way to get the running balance. Everything in this package is Ledgr code, so there is no need to say so in every name. Test the balance with mixed positive and negative entries.",
+  "rules_exercised": [
+    10,
+    5,
+    1,
+    69
+  ],
+  "entries_exercised": [
+    "N2"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_absent:LedgrEntry",
+    "symbol_absent:LedgrLedger",
+    "symbol_absent:LedgrBalance",
+    "no_getter_setter_pairs"
+  ]
+}

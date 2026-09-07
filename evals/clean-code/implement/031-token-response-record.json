@@ -1,0 +1,19 @@
+{
+  "title": "Token response record with the expiry rule kept outside it",
+  "task": "Package `oauth` decodes a token response JSON `{\"access_token\":\"...\",\"expires_in\":3600,\"token_type\":\"Bearer\"}` into a `TokenResponse` record with those three fields. Callers then need to know whether a token obtained at a given time has expired as of another given time. Keep the record a plain record for JSON and put the expiry rule where it belongs. Test decoding and the expiry boundary exactly at expires_in seconds.",
+  "rules_exercised": [
+    31,
+    29,
+    20
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_getter_setter_pairs",
+    "symbol_exists:TokenResponse",
+    "max_params:3"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "title": "Per-year invoice numbers that are unique under concurrency",
+  "task": "We need invoice numbers like `2026-000042`: sequential per year, zero-padded to six digits, restarting at one each year. Provide something with a `Next(year int) string` that many goroutines can call at once without ever producing the same number twice. The tests must be independent of one another and pass in any order.",
+  "rules_exercised": [
+    44,
+    59,
+    50,
+    61,
+    68
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_global_mutable",
+    "no_panic",
+    "no_smell_names",
+    "symbol_exists:Next"
+  ]
+}

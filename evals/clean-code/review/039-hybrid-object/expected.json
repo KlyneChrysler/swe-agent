@@ -1,0 +1,10 @@
+{
+  "title": "Exported fields and a business rule on the same type",
+  "must_find": [
+    {"rule": 29, "file": "account.go", "symbol": "Account",
+     "why": "Account exposes BalanceCents and OverdraftCents while Withdraw enforces an invariant over them; any caller can bypass the rule, so it is half object and half struct"}
+  ],
+  "must_not_find": [
+    {"rule": 33, "why": "the error states the operation, the amount and the limits"}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Split lines into words and count them across lines",
+  "task": "Write `Words(line string) []string` in package `text` that splits a line into words on any run of spaces or tabs, trims surrounding commas and periods, and lowercases. A second use case counts word frequency across many lines; provide a way to do that which builds on `Words`. I would rather callers did not have to pass in something for the function to fill. Test an empty line, punctuation trimming, and a multi-line count.",
+  "rules_exercised": [
+    16,
+    17,
+    20,
+    67
+  ],
+  "entries_exercised": [
+    "F2"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_params:2",
+    "no_nil_return",
+    "symbol_exists:Words"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Invoice that is either an object or a record",
+  "task": "Package `invoice` needs an `Invoice` to which lines (description, quantity, unit price in cents) are added, and which can report its total and its line count. The finance team also exports invoices, so they need to read each line's fields. Decide whether `Invoice` is an object or a data structure and stick to it; do not give me fully exposed fields and business rules on the same type. Test the total and the export.",
+  "rules_exercised": [
+    29,
+    31,
+    28
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_getter_setter_pairs",
+    "symbol_exists:Invoice"
+  ]
+}

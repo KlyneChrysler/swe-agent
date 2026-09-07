@@ -1,0 +1,23 @@
+{
+  "title": "Reorder quantity with names that survive six months",
+  "task": "In package `replenish`, compute whether a SKU needs reordering and how much: given on-hand units, units already on order, average daily demand, supplier lead time in days, and a safety stock, the reorder point is daily demand times lead time plus safety stock, and if on-hand plus on-order is at or below it, order enough to bring that position up to the reorder point plus one lead time of demand. Make the names carry the meaning; I will be reading this in six months. Test a case that reorders and one that does not.",
+  "rules_exercised": [
+    4,
+    16,
+    1,
+    69
+  ],
+  "entries_exercised": [
+    "N5"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_params:3",
+    "no_smell_names",
+    "no_comments_in_funcs"
+  ]
+}

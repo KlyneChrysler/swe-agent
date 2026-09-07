@@ -1,0 +1,10 @@
+{
+  "title": "A four-link chain through returned objects",
+  "must_find": [
+    {"rule": 30, "file": "zone.go", "symbol": "IsDomestic",
+     "why": "IsDomestic walks Customer().Profile().Billing().Country(), calling methods on objects returned by other calls; ask the order whether it is domestic"}
+  ],
+  "must_not_find": [
+    {"rule": 4, "why": "homeCountry is a named constant"}
+  ]
+}

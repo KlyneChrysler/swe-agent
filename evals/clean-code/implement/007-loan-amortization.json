@@ -1,0 +1,25 @@
+{
+  "title": "Amortization schedule with readable names",
+  "task": "Write `Schedule` in package `loan` for a fixed-rate loan: the caller gives the principal in cents, an annual interest rate in basis points, and the number of monthly payments, and gets back one entry per month with the interest portion, the principal portion, and the remaining balance in cents, rounding half up at each step. The standard monthly payment formula applies; keep the names readable for someone who does not remember which letter is which in that formula. Cover a 12-month loan and a zero-rate loan in tests.",
+  "rules_exercised": [
+    4,
+    6,
+    16,
+    1,
+    69
+  ],
+  "entries_exercised": [
+    "N5"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_params:3",
+    "no_smell_names",
+    "no_comments_in_funcs",
+    "symbol_exists:Schedule"
+  ]
+}

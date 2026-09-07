@@ -1,0 +1,19 @@
+{
+  "mode": "review",
+  "scenario": "001-intent-revealing-names",
+  "title": "Single-letter locals hide the due date and the overdue span",
+  "clean_fixture": false,
+  "hits": [
+    {
+      "rule": 1,
+      "entry": "N1",
+      "file": "invoice.go",
+      "symbol": "DaysOverdue",
+      "why": "`d` is the due date and `x` is the overdue span; neither name says so"
+    }
+  ],
+  "misses": [],
+  "false_positives": [],
+  "citations": 14,
+  "pass": true
+}

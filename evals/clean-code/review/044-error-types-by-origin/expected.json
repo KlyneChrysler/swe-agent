@@ -1,0 +1,10 @@
+{
+  "title": "Error types defined by where they came from, handled identically",
+  "must_find": [
+    {"rule": 34, "file": "errors.go", "symbol": "DiskReadError",
+     "why": "DiskReadError and DecodeError are classified by source, but the only caller (LoadOrDefault) treats both the same; define one error by how callers handle it"}
+  ],
+  "must_not_find": [
+    {"rule": 33, "why": "both error messages say what was attempted and wrap the cause"}
+  ]
+}

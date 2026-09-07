@@ -1,0 +1,10 @@
+{
+  "title": "Collapsed loop, column-aligned assignments and a 150-character line",
+  "must_find": [
+    {"rule": 26, "file": "summary.go", "symbol": "Summarize",
+     "why": "an if and a for with a nested if are collapsed onto single lines, two assignments are column-aligned, and the return line runs past 120 characters"}
+  ],
+  "must_not_find": [
+    {"rule": 36, "why": "empty input returns the zero Summary, not nil"}
+  ]
+}

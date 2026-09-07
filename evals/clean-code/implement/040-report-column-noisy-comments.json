@@ -1,0 +1,27 @@
+{
+  "title": "Add a column to a report file full of noise comments",
+  "task": "Add a `Units int` column to the sales report in package `report`, rendered as a third CSV column, followed by a final `total,<sales>,<units>` line. Tidy the file as you go so that any comment that remains actually says something the code cannot. Test the output for two rows exactly.",
+  "seed": {
+    "report/report.go": "package report\n\nimport (\n\t\"fmt\"\n\t\"strings\"\n)\n\n//==================================================================\n// Types\n//==================================================================\n\n// Row is a row.\ntype Row struct {\n\tName  string\n\tSales int64\n}\n\n//==================================================================\n// Functions\n//==================================================================\n\n// Render does the rendering of the rows, it goes through them and\n// basically builds up the output, handling the header etc.\nfunc Render(rows []Row) string {\n\tvar b strings.Builder\n\t// header\n\tb.WriteString(\"name,sales\\n\")\n\t// rows\n\tfor _, row := range rows {\n\t\t// write the row\n\t\tfmt.Fprintf(&b, \"%s,%d\\n\", row.Name, row.Sales)\n\t}\n\treturn b.String()\n}\n"
+  },
+  "rules_exercised": [
+    24,
+    22,
+    64,
+    65
+  ],
+  "entries_exercised": [
+    "C3",
+    "C4"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_banner_comments",
+    "no_comments_in_funcs",
+    "symbol_exists:Render"
+  ]
+}

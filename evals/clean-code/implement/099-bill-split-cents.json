@@ -1,0 +1,21 @@
+{
+  "title": "Splitting a bill to the cent without floating point",
+  "task": "Implement `split.Even(totalCents int, people int) ([]int, error)`: shares differ by at most one cent, the first shares carry the extra cents, the shares sum to exactly the total, and zero people or a negative total is an error. Then `split.ByWeight(totalCents int, weights []int) ([]int, error)` allocating proportionally with the leftover cents going to the largest remainders first. No floating point for money.",
+  "rules_exercised": [
+    68,
+    70,
+    36,
+    20
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_panic",
+    "no_nil_return",
+    "max_params:2",
+    "max_nesting:2"
+  ]
+}

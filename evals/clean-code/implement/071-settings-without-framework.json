@@ -1,0 +1,22 @@
+{
+  "title": "Three settings loaded without a configuration framework",
+  "task": "Write `settings.Load(env map[string]string) (Settings, error)` with `Port` (int, default 8080), `DatabaseURL` (required), and `Timeout` (a duration parsed with `time.ParseDuration`, default 30s). An error says which key is missing or malformed and what was found. Keep it as small as it can be; we do not need a configuration framework, tags, or reflection.",
+  "rules_exercised": [
+    52,
+    53,
+    57,
+    33,
+    36
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_files:1",
+    "no_panic",
+    "no_global_mutable",
+    "max_params:3"
+  ]
+}

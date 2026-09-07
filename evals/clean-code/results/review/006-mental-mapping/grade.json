@@ -1,0 +1,24 @@
+{
+  "mode": "review",
+  "scenario": "006-mental-mapping",
+  "title": "Loan formula written in single-letter shorthand the reader must decode",
+  "clean_fixture": false,
+  "hits": [],
+  "misses": [
+    {
+      "rule": 6,
+      "entry": "G16",
+      "file": "loan.go",
+      "symbol": "MonthlyPayment",
+      "why": "p, r, n, q and g force the reader to map each letter to principal, annual rate, months, monthly rate and growth factor"
+    }
+  ],
+  "false_positives": [
+    {
+      "rule": 20,
+      "why": "the growth factor is computed once and reused; nothing is duplicated"
+    }
+  ],
+  "citations": 14,
+  "pass": false
+}

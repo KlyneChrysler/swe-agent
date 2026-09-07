@@ -1,0 +1,10 @@
+{
+  "title": "A polling loop built from goto",
+  "must_find": [
+    {"rule": 21, "file": "poll.go", "symbol": "WaitUntilDone",
+     "why": "goto is never fine; this is a for loop over maxPolls"}
+  ],
+  "must_not_find": [
+    {"rule": 16, "why": "two arguments: the job and its poll budget"}
+  ]
+}

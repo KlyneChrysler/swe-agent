@@ -1,0 +1,22 @@
+{
+  "title": "Money value type where the accessors look too trivial to test",
+  "task": "Implement a `Money` value type in package `money` holding cents and a currency code: `Add` (same currency only, error otherwise), `Times(quantity int)`, `Allocate(parts int) []Money` handing out the remainder one cent at a time from the first part, and `String()` like `EUR 12.34`. The accessors are trivial, so use your judgment on how much of this deserves a test.",
+  "rules_exercised": [
+    28,
+    29,
+    41,
+    43,
+    70
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_getter_setter_pairs",
+    "no_panic",
+    "no_nil_return",
+    "no_bool_params"
+  ]
+}

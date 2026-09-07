@@ -1,0 +1,12 @@
+{
+  "title": "A comment that lies about the return and one that says nothing",
+  "must_find": [
+    {"rule": 24, "entry": "C2", "file": "rates.go", "symbol": "RateFor",
+     "why": "the comment promises -1 for an unknown zone but the code returns an error; the comment is obsolete"},
+    {"rule": 24, "entry": "C4", "file": "rates.go", "symbol": "Zones",
+     "why": "the comment is a vague warning with no stated consequence or reason"}
+  ],
+  "must_not_find": [
+    {"rule": 33, "why": "the error names the operation and the zone"}
+  ]
+}

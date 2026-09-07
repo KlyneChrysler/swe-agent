@@ -1,0 +1,10 @@
+{
+  "title": "A comment explains arithmetic that a named method would express",
+  "must_find": [
+    {"rule": 22, "file": "total.go", "symbol": "Total",
+     "why": "the comment describes the per-line net amount; a Line.NetCents method would say it in code and the comment could go"}
+  ],
+  "must_not_find": [
+    {"rule": 1, "why": "`total` and `line` are intention-revealing names"}
+  ]
+}

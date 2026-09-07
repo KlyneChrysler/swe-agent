@@ -1,0 +1,26 @@
+{
+  "title": "Discount codes added with the test file's existing vocabulary",
+  "task": "Add percentage discount codes to the cart: `Apply(code string) error` where `SAVE10` takes ten percent off and `SAVE25` twenty-five percent, an unknown code is an error, and `Total` reflects the discount rounded down to the cent. The test file already has a vocabulary; the new tests should read like the existing ones.",
+  "seed": {
+    "cart/cart.go": "package cart\n\nimport \"errors\"\n\n// Item is a priced line in a Cart.\ntype Item struct {\n\tSKU   string\n\tCents int\n\tQty   int\n}\n\n// ErrEmpty reports a cart with no items.\nvar ErrEmpty = errors.New(\"cart is empty\")\n\n// Cart holds items until checkout.\ntype Cart struct {\n\titems []Item\n}\n\n// Add puts an item in the cart.\nfunc (c *Cart) Add(item Item) {\n\tc.items = append(c.items, item)\n}\n\n// Total returns the sum of every line in cents.\nfunc (c *Cart) Total() (int, error) {\n\tif len(c.items) == 0 {\n\t\treturn 0, ErrEmpty\n\t}\n\ttotal := 0\n\tfor _, item := range c.items {\n\t\ttotal += item.Cents * item.Qty\n\t}\n\treturn total, nil\n}\n",
+    "cart/cart_test.go": "package cart\n\nimport \"testing\"\n\nfunc cartWith(t *testing.T, items ...Item) *Cart {\n\tt.Helper()\n\tcart := &Cart{}\n\tfor _, item := range items {\n\t\tcart.Add(item)\n\t}\n\treturn cart\n}\n\nfunc line(sku string, cents, qty int) Item {\n\treturn Item{SKU: sku, Cents: cents, Qty: qty}\n}\n\nfunc assertTotal(t *testing.T, cart *Cart, want int) {\n\tt.Helper()\n\tgot, err := cart.Total()\n\tif err != nil {\n\t\tt.Fatalf(\"Total: %v\", err)\n\t}\n\tif got != want {\n\t\tt.Fatalf(\"Total = %d, want %d\", got, want)\n\t}\n}\n\nfunc TestTotalSumsLines(t *testing.T) {\n\tassertTotal(t, cartWith(t, line(\"pen\", 150, 2), line(\"pad\", 400, 1)), 700)\n}\n\nfunc TestTotalOfEmptyCartIsAnError(t *testing.T) {\n\tif _, err := cartWith(t).Total(); err != ErrEmpty {\n\t\tt.Fatalf(\"err = %v, want ErrEmpty\", err)\n\t}\n}\n"
+  },
+  "rules_exercised": [
+    43,
+    42,
+    1,
+    8,
+    20
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_exists:Apply",
+    "no_global_mutable",
+    "no_panic",
+    "no_nil_return"
+  ]
+}

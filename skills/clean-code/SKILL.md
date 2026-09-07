@@ -634,5 +634,7 @@ the entry.
 - **Refactoring**: fix violations without changing behavior, in small
   steps, tests green after each.
 
-The `clean-code` reviewer agent applies this standard to a diff on
-demand. The `/clean-code` command runs it against your current changes.
+The `clean-code` agent writes code under this standard test-first and
+refines it against the checklist before returning, and reviews a diff
+against it on demand. `/clean-code <task>` builds; `/clean-code review`
+reviews your current changes.

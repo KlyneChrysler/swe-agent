@@ -1,0 +1,10 @@
+{
+  "title": "Errors that say only \"error\" and \"invalid\"",
+  "must_find": [
+    {"rule": 33, "file": "temperature.go", "symbol": "ParseCelsius",
+     "why": "\"error\" and \"invalid\" name neither the operation nor the input nor the kind of failure; say what was parsed and why it was rejected"}
+  ],
+  "must_not_find": [
+    {"rule": 4, "why": "the suffix and absolute zero are named constants; 64 is the bit size argument of ParseFloat"}
+  ]
+}

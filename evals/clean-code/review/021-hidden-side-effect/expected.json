@@ -1,0 +1,10 @@
+{
+  "title": "A predicate that silently refreshes the session",
+  "must_find": [
+    {"rule": 17, "entry": "N7", "file": "session.go", "symbol": "IsActive",
+     "why": "IsActive reads like a pure query but writes lastSeen; the name hides a side effect"}
+  ],
+  "must_not_find": [
+    {"rule": 36, "why": "NewSession always returns a live pointer"}
+  ]
+}

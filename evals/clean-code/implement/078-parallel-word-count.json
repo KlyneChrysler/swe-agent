@@ -1,0 +1,20 @@
+{
+  "title": "Word frequencies merged from a fixed number of goroutines",
+  "task": "Count word frequencies across many documents in package `wordfreq`: `Count(docs []string, workers int) map[string]int`, words lowercased and split on whitespace. Use exactly `workers` goroutines and merge their results; the answer must equal the single-goroutine count and be stable under `-race`. Share as little as you can between the goroutines.",
+  "rules_exercised": [
+    59,
+    58,
+    60,
+    61
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_global_mutable",
+    "no_panic",
+    "max_params:3"
+  ]
+}

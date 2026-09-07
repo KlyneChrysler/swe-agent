@@ -1,0 +1,10 @@
+{
+  "title": "Failures reported as a Status enum every caller must switch on",
+  "must_find": [
+    {"rule": 19, "file": "stock.go", "symbol": "Restock",
+     "why": "Restock returns a Status code instead of an error, and Describe must switch on the enum; return an error carrying the reason"}
+  ],
+  "must_not_find": [
+    {"rule": 16, "why": "two string arguments, no flags or outputs"}
+  ]
+}

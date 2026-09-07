@@ -1,0 +1,23 @@
+{
+  "title": "Format cents as currency with a caller-chosen compact form",
+  "task": "Implement `FormatCents(cents int64) string` in package `money` that renders 123456 as \"$1,234.56\" and negative amounts as \"-$1,234.56\". Some callers want a compact rendering that drops the cents when they are zero, so 120000 becomes \"$1,200\" while 120050 still becomes \"$1,200.50\"; let the caller choose the compact output. Both renderings must share the thousands-grouping logic rather than each doing its own. Write tests for zero, a negative amount, and grouping past a million.",
+  "rules_exercised": [
+    16,
+    12,
+    20,
+    67
+  ],
+  "entries_exercised": [
+    "F3"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_bool_params",
+    "max_params:2",
+    "symbol_exists:FormatCents"
+  ]
+}

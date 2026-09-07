@@ -1,0 +1,12 @@
+{
+  "title": "A fluent builder DSL for a two-field struct, and a Backoff that ignores Go naming conventions",
+  "must_find": [
+    {"rule": 53, "file": "retry.go", "symbol": "RetryPolicyBuilder",
+     "why": "a builder DSL for two exported fields adds nothing over the struct literal RetryPolicy{Attempts: 3, Delay: time.Second}"},
+    {"rule": 68, "entry": "G24", "file": "retry.go", "symbol": "GetDelay",
+     "why": "receiver named `this` and a Get prefix ignore the Go conventions the codebase follows elsewhere"}
+  ],
+  "must_not_find": [
+    {"rule": 28, "why": "RetryPolicy is a plain data structure; exported fields are its whole point"}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Results written into a pointer argument",
+  "must_find": [
+    {"rule": 16, "entry": "F2", "file": "unpaid.go", "symbol": "CollectUnpaid",
+     "why": "`unpaid` is an output argument the function appends into; return the slice instead"}
+  ],
+  "must_not_find": [
+    {"rule": 68, "why": "`!invoice.Paid` is a one-clause guard on a boolean field; no predicate extraction is warranted"}
+  ]
+}

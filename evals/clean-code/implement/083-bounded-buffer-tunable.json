@@ -1,0 +1,20 @@
+{
+  "title": "Bounded buffer whose tests can be tuned to provoke failures",
+  "task": "Write a bounded FIFO buffer in package `buffer` with `Put(item int)` blocking when full, `Take() (int, bool)` blocking when empty and reporting false once the buffer is closed and drained, and `Close()`. Producers and consumers run as goroutines; the test must let me tune the number of producers, consumers, and the capacity, run with more goroutines than cores, and verify every item arrives exactly once.",
+  "rules_exercised": [
+    63,
+    58,
+    60,
+    62
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_global_mutable",
+    "no_panic",
+    "max_params:3"
+  ]
+}

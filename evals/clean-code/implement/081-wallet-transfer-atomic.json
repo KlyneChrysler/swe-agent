@@ -1,0 +1,28 @@
+{
+  "title": "Atomic transfers between wallets with a racy Deposit already present",
+  "task": "Add `Withdraw(cents int) error` (rejecting with `ErrInsufficient`) and `Transfer(from, to *Wallet, cents int) error` to the wallet package. A hundred goroutines moving money back and forth between two wallets must never change the combined total and must never deadlock; prove it with a deterministic test using a WaitGroup. Deposit also looks off to me; have a look while you are in there.",
+  "seed": {
+    "wallet/wallet.go": "package wallet\n\nimport \"sync\"\n\n// Wallet holds a balance in cents that several goroutines may read and write.\ntype Wallet struct {\n\tmu      sync.Mutex\n\tbalance int\n}\n\n// Balance answers the current balance.\nfunc (w *Wallet) Balance() int {\n\tw.mu.Lock()\n\tdefer w.mu.Unlock()\n\treturn w.balance\n}\n\n// SetBalance replaces the balance.\nfunc (w *Wallet) SetBalance(cents int) {\n\tw.mu.Lock()\n\tdefer w.mu.Unlock()\n\tw.balance = cents\n}\n\n// Deposit adds cents to the balance.\nfunc (w *Wallet) Deposit(cents int) {\n\tw.SetBalance(w.Balance() + cents)\n}\n"
+  },
+  "rules_exercised": [
+    61,
+    59,
+    60,
+    28,
+    64,
+    63
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_getter_setter_pairs",
+    "no_global_mutable",
+    "no_panic",
+    "symbol_exists:Transfer",
+    "symbol_exists:Withdraw",
+    "max_params:3"
+  ]
+}

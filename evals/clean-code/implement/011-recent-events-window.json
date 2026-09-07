@@ -1,0 +1,22 @@
+{
+  "title": "Keep only the most recent N events",
+  "task": "In package `audit` I need to keep only the most recent N events in memory: when an event is added past capacity, the oldest one is dropped. Callers need to add an event and read the retained events oldest-first. This is a well-known structure; use its standard name rather than inventing one, so anyone who has seen one recognizes it. Test the wrap-around case explicitly.",
+  "rules_exercised": [
+    9,
+    1,
+    11,
+    69
+  ],
+  "entries_exercised": [
+    "N3"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_exists:RingBuffer",
+    "no_nil_return"
+  ]
+}

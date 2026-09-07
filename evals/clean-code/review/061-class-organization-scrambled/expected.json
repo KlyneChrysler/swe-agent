@@ -1,0 +1,12 @@
+{
+  "title": "Invoice file with constants at the bottom, helpers above their callers, and a formatter far from its use",
+  "must_find": [
+    {"rule": 46, "file": "invoice.go", "symbol": "Invoice",
+     "why": "constants sit at the bottom, the private heading helper precedes the public Render that calls it, and the constructor is wedged between them"},
+    {"rule": 25, "entry": "G10", "file": "invoice.go", "symbol": "formatCents",
+     "why": "defined at the top of the file, used only by Render at the bottom, with an unrelated Customer type in between"}
+  ],
+  "must_not_find": [
+    {"rule": 30, "why": "Render calls Greeting on the customer it holds in its own field, which Demeter allows"}
+  ]
+}

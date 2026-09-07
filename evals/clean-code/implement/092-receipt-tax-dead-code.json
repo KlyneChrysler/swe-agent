@@ -1,0 +1,25 @@
+{
+  "title": "Tax line added to a receipt file carrying dead code",
+  "task": "Add a `TAX` line to the rendered receipt: 8% of the subtotal rounded to the nearest cent, shown before `TOTAL`, with `TOTAL` now including tax. The file has some leftovers from an older format; clean up whatever is dead while you are there.",
+  "seed": {
+    "receipt/receipt.go": "package receipt\n\nimport (\n\t\"fmt\"\n\t\"strings\"\n)\n\n// Line is one purchased item on a receipt.\ntype Line struct {\n\tName  string\n\tCents int\n}\n\nconst currency = \"USD\"\n\nconst legacyWidth = 32\n\n// Render prints each line and the total, one per row.\nfunc Render(lines []Line) string {\n\tvar rows []string\n\ttotal := 0\n\tfor _, line := range lines {\n\t\trows = append(rows, fmt.Sprintf(\"%s %s\", line.Name, money(line.Cents)))\n\t\ttotal += line.Cents\n\t}\n\trows = append(rows, fmt.Sprintf(\"TOTAL %s\", money(total)))\n\treturn strings.Join(rows, \"\\n\")\n}\n\nfunc money(cents int) string {\n\treturn fmt.Sprintf(\"%d.%02d\", cents/100, cents%100)\n}\n\nfunc legacyMoney(cents int) string {\n\treturn fmt.Sprintf(\"%s %d.%02d\", currency, cents/100, cents%100)\n}\n\nfunc padRight(text string, width int) string {\n\tif len(text) >= width {\n\t\treturn text\n\t}\n\treturn text + strings.Repeat(\" \", width-len(text))\n}\n",
+    "receipt/receipt_test.go": "package receipt\n\nimport \"testing\"\n\nfunc TestRenderListsLinesAndTotal(t *testing.T) {\n\tgot := Render([]Line{{Name: \"pen\", Cents: 150}, {Name: \"pad\", Cents: 400}})\n\twant := \"pen 1.50\\npad 4.00\\nTOTAL 5.50\"\n\tif got != want {\n\t\tt.Fatalf(\"Render = %q, want %q\", got, want)\n\t}\n}\n"
+  },
+  "rules_exercised": [
+    68,
+    67,
+    64,
+    20
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_absent:legacyMoney",
+    "symbol_absent:padRight",
+    "symbol_exists:Render",
+    "no_comments_in_funcs"
+  ]
+}

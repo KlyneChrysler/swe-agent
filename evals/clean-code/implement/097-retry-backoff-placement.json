@@ -1,0 +1,27 @@
+{
+  "title": "Retry with backoff whose constants were parked in the wrong package",
+  "task": "Add `payments.Retry(op func() error) error` that retries a failing operation with exponential backoff starting at 100ms and doubling, up to three attempts, returning the last error wrapped with the attempt count. Someone parked `MaxAttempts` and `Backoff` in `report` for lack of a better home; put them where they belong and leave `report` about reports. Tests must not sleep.",
+  "seed": {
+    "report/report.go": "package report\n\nimport (\n\t\"fmt\"\n\t\"strings\"\n\t\"time\"\n)\n\n// MaxAttempts is how many times a flaky operation is tried.\nconst MaxAttempts = 3\n\n// Backoff is the delay before the given attempt, doubling from 100ms.\nfunc Backoff(attempt int) time.Duration {\n\treturn 100 * time.Millisecond << attempt\n}\n\n// Summary renders label/count pairs one per line in the given order.\nfunc Summary(counts map[string]int, order []string) string {\n\tvar lines []string\n\tfor _, label := range order {\n\t\tlines = append(lines, fmt.Sprintf(\"%s: %d\", label, counts[label]))\n\t}\n\treturn strings.Join(lines, \"\\n\")\n}\n",
+    "report/report_test.go": "package report\n\nimport \"testing\"\n\nfunc TestSummaryFollowsGivenOrder(t *testing.T) {\n\tgot := Summary(map[string]int{\"ok\": 2, \"failed\": 1}, []string{\"failed\", \"ok\"})\n\tif got != \"failed: 1\\nok: 2\" {\n\t\tt.Fatalf(\"Summary = %q\", got)\n\t}\n}\n"
+  },
+  "rules_exercised": [
+    68,
+    70,
+    44,
+    50,
+    64
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_global_mutable",
+    "no_panic",
+    "max_files:4",
+    "no_smell_names",
+    "symbol_exists:Retry"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "title": "Add Reserve to a file carrying dead code",
+  "task": "Add `Reserve(units int) error` to `Level` in package `stock` that lowers the on-hand quantity by units, refusing with an error naming the SKU and the shortfall when there is not enough. Clean up anything in that file that no longer earns its place. Test a successful reservation and a refused one.",
+  "seed": {
+    "stock/stock.go": "package stock\n\nimport \"fmt\"\n\n// Level tracks the on-hand quantity for one SKU.\ntype Level struct {\n\tsku    string\n\tonHand int\n}\n\n// NewLevel returns a Level for sku with the given on-hand quantity.\nfunc NewLevel(sku string, onHand int) *Level {\n\treturn &Level{sku: sku, onHand: onHand}\n}\n\n// OnHand returns the quantity currently on hand.\nfunc (l *Level) OnHand() int {\n\treturn l.onHand\n}\n\n// Receive adds delivered units.\nfunc (l *Level) Receive(units int) {\n\tl.onHand += units\n}\n\nfunc legacyRestock(l *Level, units int) {\n\tif units > 0 {\n\t\tl.onHand = l.onHand + units\n\t}\n}\n\nfunc (l *Level) describe() string {\n\treturn fmt.Sprintf(\"%s: %d on hand\", l.sku, l.onHand)\n}\n"
+  },
+  "rules_exercised": [
+    64,
+    33,
+    24,
+    67
+  ],
+  "entries_exercised": [
+    "F4"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_absent:legacyRestock",
+    "symbol_exists:Reserve",
+    "no_panic"
+  ]
+}

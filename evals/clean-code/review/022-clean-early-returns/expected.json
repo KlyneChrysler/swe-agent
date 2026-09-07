@@ -1,0 +1,9 @@
+{
+  "title": "Clean: three returns in a five-line classifier",
+  "must_find": [],
+  "must_not_find": [
+    {"rule": 21, "why": "multiple returns in a five-line function read better than a single exit"},
+    {"rule": 14, "why": "there is no type discriminator; thresholds map a number to a priority in one place"},
+    {"rule": 4, "why": "both thresholds are named constants"}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Parse ISO week strings with a readable pattern",
+  "task": "Write `ParseISOWeek(text string) (year int, week int, err error)` in package `isoweek` accepting `2024-W07` (four-digit year, a literal W, two-digit week 01 to 53). Use a regular expression, and make it possible for a reader to understand the pattern without decoding it by hand. Reject `2024-W54`, `2024-W7`, and `2024W07` with an error that quotes the input. Test the accepted form and each rejection.",
+  "rules_exercised": [
+    23,
+    22,
+    4,
+    33
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_comments_in_funcs",
+    "no_banner_comments",
+    "no_panic",
+    "symbol_exists:ParseISOWeek"
+  ]
+}

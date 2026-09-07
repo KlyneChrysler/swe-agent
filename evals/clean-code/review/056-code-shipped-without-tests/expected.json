@@ -1,0 +1,15 @@
+{
+  "title": "Discount logic shipped with no test and a test target that measures no coverage",
+  "must_find": [
+    {"rule": 41, "file": "discount.go", "symbol": "Discount",
+     "why": "production code written with no failing test first; nothing exercises Discount or discountPercent"},
+    {"rule": 70, "entry": "T1", "file": "discount_test.go", "symbol": "TestTierStringNamesGold",
+     "why": "the only test covers String; the discount arithmetic that could break is untested"},
+    {"rule": 70, "entry": "T2", "file": "Makefile", "symbol": "test",
+     "why": "the test target runs go test without any coverage measurement"}
+  ],
+  "must_not_find": [
+    {"rule": 14, "why": "the tier switch appears exactly once, at the lowest level, mapping a discriminator to a value"},
+    {"rule": 66, "why": "both build and test are a single make target"}
+  ]
+}

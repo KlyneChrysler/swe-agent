@@ -1,0 +1,16 @@
+{
+  "mode": "review",
+  "scenario": "010-clean-good-comments",
+  "title": "Clean: a regex explained and a public API documented",
+  "clean_fixture": true,
+  "hits": [],
+  "misses": [],
+  "false_positives": [
+    {
+      "rule": 36,
+      "why": "an empty string is the special-case value for an ill-formed SKU, not a null"
+    }
+  ],
+  "citations": 6,
+  "pass": false
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Author byline and change log in the file header",
+  "must_find": [
+    {"rule": 24, "entry": "C1", "file": "timesheet.go", "symbol": "Timesheet",
+     "why": "author, creation date and a modification log belong in version control, not the source"}
+  ],
+  "must_not_find": [
+    {"rule": 21, "why": "a guard return in a three-line method reads well"}
+  ]
+}

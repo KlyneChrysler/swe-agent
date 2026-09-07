@@ -1,0 +1,10 @@
+{
+  "title": "Customer, CustomerInfo, CustomerData differ only by noise words",
+  "must_find": [
+    {"rule": 3, "entry": "N4", "file": "directory.go", "symbol": "Directory",
+     "why": "Customer, CustomerInfo and CustomerData return different things but the names do not say which; a reader cannot tell which to call"}
+  ],
+  "must_not_find": [
+    {"rule": 36, "why": "a missing id yields the zero Customer value, not nil"}
+  ]
+}

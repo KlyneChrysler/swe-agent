@@ -1,0 +1,21 @@
+{
+  "title": "Temperature rendering without a unit selector argument",
+  "task": "Implement temperature formatting in package `temp`: a reading taken in Celsius should render as `21.5 °C`, `70.7 °F`, or `294.65 K`, with one decimal for Celsius and Fahrenheit and two for Kelvin. Callers pick the rendering at the call site. Give me one value type and a clear way to get each rendering.",
+  "rules_exercised": [
+    16,
+    68,
+    14,
+    7
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_bool_params",
+    "max_params:2",
+    "no_panic",
+    "max_files:1"
+  ]
+}

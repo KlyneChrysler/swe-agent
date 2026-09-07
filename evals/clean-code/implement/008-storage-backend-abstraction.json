@@ -1,0 +1,26 @@
+{
+  "title": "Storage backend abstraction with two implementations",
+  "task": "In package `blob` I want an abstraction for storage backends with `Save(key string, data []byte) error` and `Load(key string) ([]byte, error)`, plus an in-memory implementation and a filesystem one that writes files under a directory. Callers should only ever see the abstraction. Name things so a reader of a call site does not need to decode any marker to tell the abstraction from an implementation. Tests should run both implementations through the same cases, including a missing key.",
+  "rules_exercised": [
+    5,
+    8,
+    20,
+    69
+  ],
+  "entries_exercised": [
+    "N6"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_absent:IStore",
+    "symbol_absent:IStorage",
+    "symbol_absent:IBlobStore",
+    "symbol_absent:StoreInterface",
+    "symbol_absent:StorageImpl",
+    "no_nil_return"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "An unexported function nothing calls",
+  "must_find": [
+    {"rule": 67, "entry": "F4", "file": "total.go", "symbol": "totalRoundedToDollar",
+     "why": "totalRoundedToDollar is unexported and has no caller; delete it"}
+  ],
+  "must_not_find": [
+    {"rule": 20, "why": "the rounding helper delegates to Total rather than repeating its loop"}
+  ]
+}

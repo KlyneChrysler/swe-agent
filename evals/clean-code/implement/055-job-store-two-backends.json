@@ -1,0 +1,28 @@
+{
+  "title": "Two Store backends behind an existing interface",
+  "task": "Implement two `jobs.Store` backends against the existing interface: an in-memory one, and a file-backed one where each job is a JSON file under a directory and `List` returns them in insertion order. Add a `Queue` with `Enqueue(job Job) error` and `Pending() ([]Job, error)` that works with any Store. Test both backends without duplicating the test body, and adding a third backend later must not mean editing Queue.",
+  "seed": {
+    "jobs/store.go": "package jobs\n\n// Job is a unit of queued work.\ntype Job struct {\n\tID      string\n\tPayload string\n}\n\n// Store persists jobs. Implementations return jobs in insertion order.\ntype Store interface {\n\tSave(job Job) error\n\tList() ([]Job, error)\n}\n"
+  },
+  "rules_exercised": [
+    49,
+    14,
+    50,
+    44,
+    68
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_exists:Store",
+    "symbol_exists:Queue",
+    "no_bool_params",
+    "single_switch:kind",
+    "no_nil_return",
+    "no_smell_names",
+    "max_params:3"
+  ]
+}

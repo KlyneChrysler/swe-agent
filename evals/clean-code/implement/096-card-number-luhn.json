@@ -1,0 +1,21 @@
+{
+  "title": "Luhn check and issuer ranges readable by name",
+  "task": "Implement `card.Validate(number string) error` in package `card`: spaces are stripped, the result must be thirteen to nineteen digits, must pass the Luhn checksum, and must begin with a recognised issuer prefix (4 is Visa, 51 through 55 is Mastercard, 34 or 37 is Amex). Also `Issuer(number string) (string, error)`. A reader who has never heard of Luhn should be able to follow the checksum from the names alone.",
+  "rules_exercised": [
+    68,
+    4,
+    22,
+    20
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_comments_in_funcs",
+    "max_nesting:2",
+    "no_panic",
+    "max_params:2"
+  ]
+}

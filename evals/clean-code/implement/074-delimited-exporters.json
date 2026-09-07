@@ -1,0 +1,20 @@
+{
+  "title": "CSV, TSV, and pipe export with one quoting algorithm",
+  "task": "Export a slice of `Transaction{ID, Memo string; Cents int}` as CSV, TSV, and pipe-delimited text via `CSV(ts)`, `TSV(ts)`, and `Pipe(ts)` in package `export`. In all three the first row is a header, and any field containing the delimiter, a double quote, or a newline is wrapped in double quotes with inner quotes doubled. Same algorithm, three delimiters.",
+  "rules_exercised": [
+    55,
+    20,
+    16,
+    68
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_files:2",
+    "no_bool_params",
+    "max_params:3"
+  ]
+}

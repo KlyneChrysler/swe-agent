@@ -1,0 +1,23 @@
+{
+  "title": "Progressive tax bands with a large table of cases",
+  "task": "Implement `IncomeTax(cents int) int` in package `tax`: the first 1,000,000 cents are taxed at 0%, the next 3,000,000 at 20%, the next 6,000,000 at 40%, and everything above at 45%, each band at its own rate, result rounded down to the cent. There are many cases to cover, including every band edge. The tests deserve the same care as the code.",
+  "rules_exercised": [
+    45,
+    42,
+    43,
+    20,
+    68,
+    70
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_comments_in_funcs",
+    "no_panic",
+    "max_files:1",
+    "max_nesting:2"
+  ]
+}

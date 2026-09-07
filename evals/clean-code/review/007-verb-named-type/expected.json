@@ -1,0 +1,10 @@
+{
+  "title": "A type named with a verb phrase",
+  "must_find": [
+    {"rule": 7, "file": "address.go", "symbol": "NormalizeAddress",
+     "why": "the type is named as a verb (NormalizeAddress); types are nouns such as AddressNormalizer"}
+  ],
+  "must_not_find": [
+    {"rule": 16, "why": "Country is a field of the type, not a flag argument to Apply"}
+  ]
+}

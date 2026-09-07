@@ -1,0 +1,20 @@
+{
+  "title": "Parse typed quantities behind a wrapped boundary",
+  "task": "Package `qty` parses quantities that users type, such as `3`, `3 pcs`, and `2.5 kg`, into a value with an amount in thousandths (so 2.5 becomes 2500) and a unit (`pcs` when omitted). The standard library's number parsing errors must not reach callers; they get one error type of ours that says which text was rejected. Keep the standard library conversion calls confined to one small spot. Test each form and a rejection.",
+  "rules_exercised": [
+    34,
+    37,
+    40,
+    33
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_panic",
+    "symbol_exists:Parse",
+    "no_bool_params"
+  ]
+}

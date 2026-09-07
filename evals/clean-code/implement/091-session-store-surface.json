@@ -1,0 +1,23 @@
+{
+  "title": "Session store that exposes only what callers need",
+  "task": "Build `session.Store` in package `session` with `Start(user string) ID`, `User(id ID) (string, error)`, `Touch(id ID) error` which refreshes the session's activity, and `Expire()` which removes sessions idle for more than thirty minutes; the clock is given at construction. Safe for concurrent use. Expose only what a caller needs and nothing about how sessions are kept.",
+  "rules_exercised": [
+    28,
+    29,
+    68,
+    59,
+    61
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_getter_setter_pairs",
+    "no_global_mutable",
+    "no_panic",
+    "symbol_exists:New",
+    "no_nil_return"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Cart quantity rules that actually hold",
+  "task": "In package `cart`, let a shopper change the quantity of a line already in the cart by SKU, removing the line when the quantity goes to zero; a negative quantity or an unknown SKU is an error. Right now anything can reach into the cart's lines and put garbage there, and I would like the new rules to actually hold. Test an update, a removal at zero, and both errors.",
+  "seed": {
+    "cart/cart.go": "package cart\n\n// Line is one product in the cart.\ntype Line struct {\n\tSKU       string\n\tUnitCents int64\n\tQuantity  int\n}\n\n// Cart holds the shopper's lines.\ntype Cart struct {\n\tLines []Line\n}\n\n// Total returns the sum of every line's unit price times quantity.\nfunc (c *Cart) Total() int64 {\n\tvar total int64\n\tfor _, line := range c.Lines {\n\t\ttotal += line.UnitCents * int64(line.Quantity)\n\t}\n\treturn total\n}\n"
+  },
+  "rules_exercised": [
+    28,
+    29,
+    64,
+    1
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_getter_setter_pairs",
+    "symbol_exists:Cart",
+    "no_panic"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "title": "Read-through cache that does not hold its lock while loading",
+  "task": "Add `cache.Cache` with `Get(key string) (string, error)` that returns a stored value or calls the loader given at construction to fetch and store it. The loader is slow (a network call), so the lock must not be held while it runs, and a loader error must not be stored. Tests need a fake loader and a fixed number of goroutines, and should show how many times the loader ran.",
+  "rules_exercised": [
+    61,
+    59,
+    36,
+    60,
+    50
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_global_mutable",
+    "no_panic",
+    "no_nil_return",
+    "symbol_exists:New"
+  ]
+}

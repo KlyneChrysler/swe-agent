@@ -5,13 +5,13 @@
   },
   "metadata": {
     "description": "Unforgiving standards for Claude Code: the anti-slop standard and the complete Clean Code discipline.",
-    "version": "0.3.0"
+    "version": "0.4.0"
   },
   "plugins": [
     {
       "name": "swe",
       "description": "Unforgiving standards for Claude Code: the anti-slop standard and the complete Clean Code discipline.",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "source": {
         "source": "github",
         "repo": "KlyneChrysler/swe-agent",

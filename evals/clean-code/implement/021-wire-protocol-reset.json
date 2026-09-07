@@ -1,0 +1,20 @@
+{
+  "title": "Line protocol with RESET handled without jumps or flags",
+  "task": "In package `wire`, implement `Sum(lines []string) (int, error)` for a tiny line protocol: each line is `ADD <n>`, `RESET`, or `END`. ADD accumulates n, RESET throws away everything accumulated so far and continues, END stops processing and returns the total, and any other line is an error naming the offending line. Handle RESET without backwards jumps or bookkeeping flags. Test a stream with a RESET in the middle, one that ends without END, and a bad line.",
+  "rules_exercised": [
+    21,
+    11,
+    19,
+    12
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_nesting:2",
+    "no_panic",
+    "symbol_exists:Sum"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Bank account whose balance is read and changed",
+  "task": "In package `bank`, model an `Account` whose balance in cents can be read and changed through deposits and withdrawals; a withdrawal larger than the balance must fail with an error stating the shortfall. Callers outside the package must not be able to put the account into a negative balance. Test a deposit, a successful withdrawal, and a rejected one.",
+  "rules_exercised": [
+    28,
+    29,
+    18,
+    33
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_getter_setter_pairs",
+    "symbol_exists:Account",
+    "no_panic"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Shipping price sheet readable without comments",
+  "task": "Compute shipping in package `shipping`: `Cost(grams int, zone Zone) (int, error)` for domestic and international zones. Under 500g: 350 cents domestic, 900 international. From 500g up to 2000g: 550 / 1600. Over 2000g: 550 / 1600 plus 100 / 300 per started kilogram beyond 2000g. An unknown zone is an error. A reader should be able to see the price sheet in the code itself, without comments.",
+  "rules_exercised": [
+    56,
+    4,
+    22,
+    68
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_comments_in_funcs",
+    "max_nesting:2",
+    "no_panic",
+    "no_bool_params"
+  ]
+}

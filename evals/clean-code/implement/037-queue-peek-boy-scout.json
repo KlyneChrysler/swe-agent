@@ -1,0 +1,28 @@
+{
+  "title": "Add Peek to a queue file that needs tidying",
+  "task": "Add `Peek() (string, error)` to the queue in package `queue`, returning the front item without removing it and `ErrEmpty` when there is none. Since you are editing that file, leave it in the state you would want to find it in. Add tests for Peek on an empty and a non-empty queue.",
+  "seed": {
+    "queue/queue.go": "// queue.go\n// -----------------------------------------------------------------\n// Changelog:\n//   2024-01-10  initial version (jd)\n//   2024-03-02  added Len (jd)\n// -----------------------------------------------------------------\n\npackage queue\n\nimport \"errors\"\n\n// ErrEmpty is returned when taking from an empty queue.\nvar ErrEmpty = errors.New(\"queue: empty\")\n\n// Queue is a FIFO of strings.\ntype Queue struct {\n\titems []string\n}\n\n// Push adds item at the back.\nfunc (q *Queue) Push(item string) {\n\tq.items = append(q.items, item)\n}\n\n// Pop removes and returns the front item.\nfunc (q *Queue) Pop() (string, error) {\n\t// if len(q.items) == 0 {\n\t//     panic(\"pop from empty queue\")\n\t// }\n\tif len(q.items) == 0 {\n\t\treturn \"\", ErrEmpty\n\t}\n\titem := q.items[0]\n\tq.items = q.items[1:]\n\treturn item, nil\n}\n\n// Len returns the number of items. TODO: cache this\nfunc (q *Queue) Len() int {\n\treturn len(q.items)\n}\n"
+  },
+  "rules_exercised": [
+    24,
+    64,
+    22,
+    65
+  ],
+  "entries_exercised": [
+    "C1",
+    "C5"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_commented_code",
+    "no_todo",
+    "no_banner_comments",
+    "symbol_exists:Peek"
+  ]
+}

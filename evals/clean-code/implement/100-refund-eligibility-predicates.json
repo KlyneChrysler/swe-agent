@@ -1,0 +1,21 @@
+{
+  "title": "Refund eligibility that reads as sentences",
+  "task": "Implement `refund.Check(order Order, now time.Time) error` in package `refund`, returning nil when a refund is allowed and otherwise an error naming the first rule that blocks it. An order qualifies when it was purchased within the last thirty days, it has not shipped or has been returned, it is not flagged for fraud, and it is not a gift card; `Order` carries `Purchased time.Time` and the flags `Shipped`, `Returned`, `Flagged`, and `GiftCard`. Each rule should read as a sentence; I do not want to decode nested nots.",
+  "rules_exercised": [
+    68,
+    15,
+    21,
+    36
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_nesting:2",
+    "no_comments_in_funcs",
+    "no_bool_params",
+    "max_params:2"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Load a config file, defaulting when it is missing",
+  "task": "Write `Load(path string) (Config, error)` in package `config` that reads `key=value` lines (blank lines and `#` comments ignored) for keys `port` (int), `host` (string), and `debug` (true or false). When the file does not exist, return the defaults (port 8080, host localhost, debug false) rather than an error; any other read failure or a malformed line is an error that includes the path. Decide the failure handling before the parsing so the happy path stays flat. Test the defaults, a full file, and a malformed line.",
+  "rules_exercised": [
+    32,
+    35,
+    36,
+    19
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_panic",
+    "no_nil_return",
+    "symbol_exists:Load",
+    "max_nesting:2"
+  ]
+}

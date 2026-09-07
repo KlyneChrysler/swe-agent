@@ -1,0 +1,10 @@
+{
+  "title": "High-level fulfilment steps mixed with string trimming",
+  "must_find": [
+    {"rule": 13, "file": "fulfill.go", "symbol": "Fulfill",
+     "why": "Reserve and Dispatch are policy while the TrimSpace/ToUpper/Join label construction is mechanism; extract shippingLabel(order)"}
+  ],
+  "must_not_find": [
+    {"rule": 16, "why": "Fulfill takes one argument; its collaborators are fields set at construction"}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "title": "HTML receipt with the markup kept out of the Go file",
+  "task": "Render an HTML receipt for an `Order{Customer string; Lines []Line; TotalCents int}` with `Line{Name string; Quantity int; Cents int}` in package `receipt`, using `html/template` so values are escaped: `Render(w io.Writer, order Order) error`. Keep the markup out of the Go source file. Amounts render as `12.34`.",
+  "rules_exercised": [
+    68,
+    37,
+    23,
+    40
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_panic",
+    "max_params:2",
+    "max_files:2"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Replace an algorithm without leaving its corpse behind",
+  "task": "Replace the checksum in package `checksum` with Fletcher-16 (two running sums modulo 255; the result is `sum2<<8 | sum1` as a uint16), keeping the function name `Of` but changing its return type to `uint16`. I would like to still be able to find the additive version later if we need to compare, and please record the change somewhere sensible. Update or add tests, including empty input and the reference value 0xC8F0 for \"abcde\".",
+  "seed": {
+    "checksum/checksum.go": "package checksum\n\n// Of returns the additive checksum of data modulo 256.\nfunc Of(data []byte) byte {\n\tvar sum byte\n\tfor _, b := range data {\n\t\tsum += b\n\t}\n\treturn sum\n}\n"
+  },
+  "rules_exercised": [
+    24,
+    64,
+    65
+  ],
+  "entries_exercised": [
+    "C1",
+    "C5"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_commented_code",
+    "no_banner_comments",
+    "no_todo",
+    "symbol_exists:Of"
+  ]
+}

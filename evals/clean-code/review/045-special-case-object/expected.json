@@ -1,0 +1,10 @@
+{
+  "title": "The everyday no-discount case reported as an error",
+  "must_find": [
+    {"rule": 35, "file": "discount.go", "symbol": "DiscountFor",
+     "why": "most SKUs have no discount, yet DiscountFor returns ErrNoDiscount and PriceCents must catch it; return a zero Discount that prices correctly"}
+  ],
+  "must_not_find": [
+    {"rule": 33, "why": "the error names the operation and the failure kind"}
+  ]
+}

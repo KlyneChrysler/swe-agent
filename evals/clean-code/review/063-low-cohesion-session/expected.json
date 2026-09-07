@@ -1,0 +1,13 @@
+{
+  "title": "Session mixes identity fields with an upload buffer, and carries a generic clamp",
+  "must_find": [
+    {"rule": 48, "file": "session.go", "symbol": "Session",
+     "why": "Owner and IsExpired use userID/expiresAt while Append, Remaining and Advance use buffer/cursor; two classes share one struct"},
+    {"rule": 68, "entry": "G13", "file": "session.go", "symbol": "clamp",
+     "why": "a general integer clamp is attached to Session as a method although it has no business knowing about sessions"}
+  ],
+  "must_not_find": [
+    {"rule": 16, "why": "clamp's three arguments are the shape of a clamp; its placement, not its arity, is the defect"},
+    {"rule": 54, "why": "expiry takes the current time as an argument and is fully testable"}
+  ]
+}

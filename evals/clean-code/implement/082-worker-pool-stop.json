@@ -1,0 +1,21 @@
+{
+  "title": "Worker pool with a Stop that leaves nothing running",
+  "task": "Implement `pool.Pool` with `New(workers int, handle func(Job))`, `Submit(job Job) error`, and `Stop()`. Stop waits for every submitted job to finish and then returns, after which no goroutine of the pool is still running; Submit after Stop is an error. The tests must prove all N submitted jobs ran and that Stop returns, without sleeps or timing assumptions.",
+  "rules_exercised": [
+    62,
+    58,
+    63,
+    60
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_global_mutable",
+    "no_panic",
+    "max_params:2",
+    "no_nil_return"
+  ]
+}

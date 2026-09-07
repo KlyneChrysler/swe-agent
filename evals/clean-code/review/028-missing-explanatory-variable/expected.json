@@ -1,0 +1,10 @@
+{
+  "title": "A three-clause condition with no intermediate names",
+  "must_find": [
+    {"rule": 68, "entry": "G19", "file": "shipping.go", "symbol": "QualifiesForFreeShipping",
+     "why": "the net amount, the domestic check and the non-empty check each deserve a named intermediate (netCents, isDomestic, hasLines)"}
+  ],
+  "must_not_find": [
+    {"rule": 4, "why": "the threshold is a named constant"}
+  ]
+}

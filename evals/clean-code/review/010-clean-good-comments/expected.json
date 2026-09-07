@@ -1,0 +1,9 @@
+{
+  "title": "Clean: a regex explained and a public API documented",
+  "must_find": [],
+  "must_not_find": [
+    {"rule": 24, "why": "the regex comment makes the pattern readable and the doc comments describe a public API, both allowed by rule 23"},
+    {"rule": 22, "why": "no name or smaller function could carry the example SKU or the not-in-catalog caveat"},
+    {"rule": 36, "why": "an empty string is the special-case value for an ill-formed SKU, not a null"}
+  ]
+}

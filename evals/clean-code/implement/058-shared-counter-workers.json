@@ -1,0 +1,22 @@
+{
+  "title": "Exact success and failure counts across a fixed number of workers",
+  "task": "Write `Process(items []string, workers int, handle func(string) error) Summary` in package `batch` that hands the items to exactly `workers` goroutines, waits for all of them, and reports how many succeeded and how many failed. The counts must be exact under `go test -race`, and the test must not rely on timing. The counting code and the item handling code should not be tangled together.",
+  "rules_exercised": [
+    58,
+    59,
+    60,
+    61,
+    63
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_global_mutable",
+    "no_panic",
+    "max_params:3",
+    "no_smell_names"
+  ]
+}

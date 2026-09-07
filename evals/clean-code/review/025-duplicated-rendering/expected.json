@@ -1,0 +1,10 @@
+{
+  "title": "Money and date formatting duplicated across two renderers",
+  "must_find": [
+    {"rule": 20, "file": "receipt_text.go", "symbol": "RenderReceipt",
+     "why": "RenderReceipt repeats RenderInvoice's dollars/cents split and date-and-amount layout line for line; extract formatMoney and a shared document renderer"}
+  ],
+  "must_not_find": [
+    {"rule": 4, "why": "centsPerDollar and dateLayout are named constants shared by both files"}
+  ]
+}

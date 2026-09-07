@@ -1,0 +1,10 @@
+{
+  "title": "Boolean flag selects between two renderings",
+  "must_find": [
+    {"rule": 16, "entry": "F3", "file": "render.go", "symbol": "Render",
+     "why": "the `compact` flag makes Render do two things; split into RenderCompact and RenderFull"}
+  ],
+  "must_not_find": [
+    {"rule": 20, "why": "the two branches share no lines; not duplication"}
+  ]
+}

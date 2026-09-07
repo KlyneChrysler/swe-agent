@@ -1,0 +1,25 @@
+{
+  "title": "Label and limit per card brand next to an existing fee switch",
+  "task": "We also need a display label per card brand (`Visa`, `Mastercard`, `American Express`) and a maximum transaction in cents per brand (500000 for Visa and Mastercard, 1000000 for Amex), as `Label(brand Brand) (string, error)` and `MaxTransaction(brand Brand) (int, error)` alongside the existing fee. Adding a brand later should mean touching one place.",
+  "seed": {
+    "cards/fees.go": "package cards\n\nimport \"fmt\"\n\n// Brand identifies a card network.\ntype Brand string\n\nconst (\n\tVisa       Brand = \"visa\"\n\tMastercard Brand = \"mastercard\"\n\tAmex       Brand = \"amex\"\n)\n\n// FeeBasisPoints returns the processing fee for a brand in hundredths of a percent.\nfunc FeeBasisPoints(brand Brand) (int, error) {\n\tswitch brand {\n\tcase Visa:\n\t\treturn 150, nil\n\tcase Mastercard:\n\t\treturn 160, nil\n\tcase Amex:\n\t\treturn 290, nil\n\t}\n\treturn 0, fmt.Errorf(\"fee: unknown card brand %q\", brand)\n}\n"
+  },
+  "rules_exercised": [
+    14,
+    68,
+    49,
+    55
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "single_switch:brand",
+    "no_nil_return",
+    "no_panic",
+    "no_global_mutable",
+    "symbol_exists:FeeBasisPoints"
+  ]
+}

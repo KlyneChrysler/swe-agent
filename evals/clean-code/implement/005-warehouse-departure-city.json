@@ -1,0 +1,18 @@
+{
+  "title": "Report the city a shipment leaves from",
+  "task": "In package `dispatch` I have a `Shipment` that is fulfilled from a `Warehouse`, which sits at an `Address` with a street, a city, and a country. Dispatch notices need one line like \"Leaves from Manila\" for a shipment, so write `DepartureNotice(s Shipment) string`. Model the three types however you think is right, but I don't want the notice reaching through the whole object graph if any of those types end up hiding their fields behind methods. Test the notice for one shipment.",
+  "rules_exercised": [
+    30,
+    28,
+    31
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_getter_setter_pairs",
+    "symbol_exists:DepartureNotice"
+  ]
+}

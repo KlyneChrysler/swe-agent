@@ -1,0 +1,19 @@
+{
+  "title": "Parse errors that carry the line number",
+  "task": "In package `props` implement `Parse(text string) (map[string]string, error)` for `key=value` lines. When a line has no `=`, an empty key, or a duplicate key, callers need the line number and the reason both in the message and available programmatically, so they can point at the line in an editor; name the error type `ParseError`. An empty document is a valid empty result. Test a good document and each failure with its line number.",
+  "rules_exercised": [
+    33,
+    19,
+    34
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_exists:ParseError",
+    "no_nil_return",
+    "no_panic"
+  ]
+}

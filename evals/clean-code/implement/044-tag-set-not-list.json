@@ -1,0 +1,24 @@
+{
+  "title": "A collection of unique tags named for what it is",
+  "task": "Package `tags` needs a collection of unique, case-insensitive tags: add a tag, ask whether a tag is present, and list the tags sorted. Adding \"Go\" and then \"go\" must leave a single tag, and listing an empty collection must give an empty list. Name the type for what it actually is. Test de-duplication and sorted listing.",
+  "rules_exercised": [
+    2,
+    9,
+    1,
+    69
+  ],
+  "entries_exercised": [
+    "N1"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_absent:TagList",
+    "symbol_absent:TagArray",
+    "symbol_absent:Tags",
+    "no_nil_return"
+  ]
+}

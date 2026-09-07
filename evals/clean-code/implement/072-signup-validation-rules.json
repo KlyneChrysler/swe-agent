@@ -1,0 +1,22 @@
+{
+  "title": "Three signup rules without a rule engine",
+  "task": "Implement `signup.Validate(form Form) error` for `Form{Email, Password, DisplayName string}`: the email must contain exactly one `@` with text on both sides, the password at least twelve characters, the display name required and at most forty characters. Report every problem at once, one line each, in field order, and nothing when the form is fine. Three rules; do not build a rule engine.",
+  "rules_exercised": [
+    53,
+    57,
+    49,
+    33,
+    20
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_files:1",
+    "no_panic",
+    "max_nesting:2",
+    "no_bool_params"
+  ]
+}

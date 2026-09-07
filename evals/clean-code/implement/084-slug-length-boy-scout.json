@@ -1,0 +1,27 @@
+{
+  "title": "Slug length limit in a file full of cruft",
+  "task": "Change `slug.Make` so a slug is cut to at most forty characters, cutting at a dash boundary so no word is split, and never ending in a dash. The file has accumulated cruft over the years; leave it cleaner than you found it while keeping the existing behaviour for short titles.",
+  "seed": {
+    "slug/slug.go": "package slug\n\nimport \"strings\"\n\n// ============================================================\n// Slug generation\n// ============================================================\n\n// Make converts a title into a URL slug.\nfunc Make(title string) string {\n\t// lower-case everything first\n\tlowered := strings.ToLower(title)\n\tvar b strings.Builder\n\tlastDash := false\n\tfor _, r := range lowered {\n\t\t// fold a few accented letters we see in product names\n\t\tswitch r {\n\t\tcase 'é', 'è', 'ê':\n\t\t\tr = 'e'\n\t\tcase 'à', 'â':\n\t\t\tr = 'a'\n\t\tcase 'ö', 'ô':\n\t\t\tr = 'o'\n\t\t}\n\t\t// keep letters and digits\n\t\tif (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9') {\n\t\t\tb.WriteRune(r)\n\t\t\tlastDash = false\n\t\t} else if !lastDash && b.Len() > 0 {\n\t\t\t// collapse runs of separators into one dash\n\t\t\tb.WriteRune('-')\n\t\t\tlastDash = true\n\t\t}\n\t}\n\t// old behaviour, kept for reference:\n\t// return strings.ReplaceAll(lowered, \" \", \"-\")\n\tresult := b.String()\n\t// strip a trailing dash\n\tif strings.HasSuffix(result, \"-\") {\n\t\tresult = result[:len(result)-1]\n\t}\n\treturn result\n}\n",
+    "slug/slug_test.go": "package slug\n\nimport \"testing\"\n\nfunc TestMakeLowersAndDashes(t *testing.T) {\n\tif got := Make(\"Hello, World!\"); got != \"hello-world\" {\n\t\tt.Fatalf(\"Make = %q\", got)\n\t}\n}\n\nfunc TestMakeFoldsAccents(t *testing.T) {\n\tif got := Make(\"Café Crème\"); got != \"cafe-creme\" {\n\t\tt.Fatalf(\"Make = %q\", got)\n\t}\n}\n"
+  },
+  "rules_exercised": [
+    64,
+    24,
+    11,
+    65,
+    68
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_commented_code",
+    "no_banner_comments",
+    "no_comments_in_funcs",
+    "symbol_exists:Make",
+    "max_nesting:2"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Parse semantic versions without magic failure values",
+  "task": "Write `Parse(text string) (Version, error)` in package `semver` for `MAJOR.MINOR.PATCH` with non-negative integers, plus `(Version) Less(other Version) bool`. Rejected input includes the empty string, a missing part, a leading `v`, and a non-numeric part; the error should say what was wrong with which input. Do not encode failure as a special version value. Test parsing, ordering, and each rejection.",
+  "rules_exercised": [
+    19,
+    32,
+    33,
+    36
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_panic",
+    "no_nil_return",
+    "symbol_exists:Parse",
+    "symbol_exists:Less"
+  ]
+}

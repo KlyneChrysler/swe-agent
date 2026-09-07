@@ -1,0 +1,12 @@
+{
+  "title": "One slug test checks four concepts and declares the trivial cases not worth testing",
+  "must_find": [
+    {"rule": 43, "file": "slug_test.go", "symbol": "TestSlug",
+     "why": "lowercasing, whitespace collapsing, trimming, and tab handling are four concepts asserted in one test"},
+    {"rule": 70, "entry": "T3", "file": "slug_test.go", "symbol": "TestSlug",
+     "why": "the header comment skips the empty and single-word cases as trivial"}
+  ],
+  "must_not_find": [
+    {"rule": 11, "why": "Slug is two lines"}
+  ]
+}

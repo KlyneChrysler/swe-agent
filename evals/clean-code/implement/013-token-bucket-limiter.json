@@ -1,0 +1,20 @@
+{
+  "title": "Token bucket rate limiter with deterministic clock",
+  "task": "Implement a token bucket rate limiter in package `ratelimit`: a bucket has a capacity and a refill rate in tokens per second, callers need to know whether a request at a given instant is permitted, and a permitted request consumes one token. Refill is based on the time elapsed since the previous call, and the caller passes the current time in so tests are deterministic. Keep the refill, the decision, and the bookkeeping readable as separate steps. Tests should cover a burst up to capacity, denial when empty, and refill after waiting.",
+  "rules_exercised": [
+    11,
+    12,
+    17,
+    13
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_nesting:2",
+    "no_global_mutable",
+    "symbol_exists:Allow"
+  ]
+}

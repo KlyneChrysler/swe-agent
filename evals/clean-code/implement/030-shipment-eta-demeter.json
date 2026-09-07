@@ -1,0 +1,21 @@
+{
+  "title": "Shipment ETA without reaching through the carrier",
+  "task": "Add a `Shipment` to package `dispatch` that is handed to a `Carrier` and can report its estimated arrival: the carrier's first departure after the shipment's ready time, plus the carrier's transit time. If there is no such departure the caller gets an error. Read the existing file and give the collaborators the methods they need rather than pulling their internals out through accessor chains. Test an ETA and the no-departure case.",
+  "seed": {
+    "dispatch/carrier.go": "package dispatch\n\nimport \"time\"\n\n// Schedule knows when a carrier's departures are.\ntype Schedule struct {\n\tdepartures []time.Time\n}\n\n// NewSchedule returns a Schedule of the given departure times, in order.\nfunc NewSchedule(departures ...time.Time) *Schedule {\n\treturn &Schedule{departures: departures}\n}\n\n// NextDepartureAfter returns the first departure after t, and false if none.\nfunc (s *Schedule) NextDepartureAfter(t time.Time) (time.Time, bool) {\n\tfor _, departure := range s.departures {\n\t\tif departure.After(t) {\n\t\t\treturn departure, true\n\t\t}\n\t}\n\treturn time.Time{}, false\n}\n\n// Carrier moves shipments on a Schedule with a fixed transit time.\ntype Carrier struct {\n\tschedule *Schedule\n\ttransit  time.Duration\n}\n\n// NewCarrier returns a Carrier with the given schedule and transit time.\nfunc NewCarrier(schedule *Schedule, transit time.Duration) *Carrier {\n\treturn &Carrier{schedule: schedule, transit: transit}\n}\n\n// Schedule returns the carrier's departure schedule.\nfunc (c *Carrier) Schedule() *Schedule {\n\treturn c.schedule\n}\n\n// Transit returns how long a shipment spends in transit.\nfunc (c *Carrier) Transit() time.Duration {\n\treturn c.transit\n}\n"
+  },
+  "rules_exercised": [
+    30,
+    28,
+    17
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_exists:Shipment",
+    "no_panic"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Three views of a user account with distinct names",
+  "task": "Package `accounts` needs three things for a user: the stored account record (id, email, display name, created time), a shorter public view that omits the email, and an audit snapshot that adds the time it was captured. Write the three types and the functions that derive the public view and the audit snapshot from the record. Choose names that tell a reader which one to use without opening the definitions. Test both derivations.",
+  "rules_exercised": [
+    3,
+    2,
+    69
+  ],
+  "entries_exercised": [
+    "N4"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_smell_names",
+    "max_params:2"
+  ]
+}

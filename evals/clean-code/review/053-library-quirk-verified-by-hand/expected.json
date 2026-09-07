@@ -1,0 +1,12 @@
+{
+  "title": "strconv behaviour relied on but checked by hand, and a cents parser nobody understands",
+  "must_find": [
+    {"rule": 38, "file": "amount.go", "symbol": "ParseAmount",
+     "why": "depends on strconv's underscore-and-base behaviour but pins it with a comment instead of a kept learning test"},
+    {"rule": 68, "entry": "G21", "file": "amount.go", "symbol": "parseCents",
+     "why": "the author admits not understanding why pad-to-three-then-slice-two works"}
+  ],
+  "must_not_find": [
+    {"rule": 36, "why": "the blank identifier from strings.Cut discards a bool, not a null"}
+  ]
+}

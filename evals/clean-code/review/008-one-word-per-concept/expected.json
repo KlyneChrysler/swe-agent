@@ -1,0 +1,10 @@
+{
+  "title": "Fetch, Retrieve and Get name the same lookup on three types",
+  "must_find": [
+    {"rule": 8, "file": "orders.go", "symbol": "RetrieveOrder",
+     "why": "FetchCustomer, RetrieveOrder and GetProduct are the same operation under three verbs; pick one word"}
+  ],
+  "must_not_find": [
+    {"rule": 20, "why": "the three lookups differ in structure (map, linear scan, normalized key); not duplication"}
+  ]
+}

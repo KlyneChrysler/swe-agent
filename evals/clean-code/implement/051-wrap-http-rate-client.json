@@ -1,0 +1,24 @@
+{
+  "title": "Fetch an exchange rate over HTTP without leaking net/http",
+  "task": "We need a `rates` package that fetches the exchange rate for a pair like `USDEUR` from a JSON endpoint: `GET {base}/rates/{pair}` answers `{\"rate\": 0.91}`. Give me something built from a base URL with a `Lookup(pair string) (Rate, error)` method, tested against `net/http/httptest`. The rest of the system only ever needs the rate; nothing outside this package should have to know we use net/http. A non-200 response or bad JSON is an error that says which pair failed.",
+  "rules_exercised": [
+    37,
+    40,
+    34,
+    33,
+    38,
+    44
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_panic",
+    "no_nil_return",
+    "max_params:3",
+    "max_files:2",
+    "no_smell_names"
+  ]
+}

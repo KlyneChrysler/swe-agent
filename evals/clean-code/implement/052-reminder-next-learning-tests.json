@@ -1,0 +1,22 @@
+{
+  "title": "Weekly reminder schedule pinned by learning tests",
+  "task": "Reminders are configured as strings like `mon 09:30` and `fri 17:00`. Implement `Next(spec string, after time.Time) (time.Time, error)` in package `remind` returning the first occurrence strictly after `after`, in the same location as `after`. We have been bitten by `time.Parse` layouts and `time.Weekday` arithmetic before, so pin the standard-library behaviour you rely on in tests of their own, and keep every test repeatable no matter what the wall clock says.",
+  "rules_exercised": [
+    38,
+    44,
+    43,
+    41,
+    4
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_panic",
+    "no_global_mutable",
+    "max_params:3",
+    "symbol_exists:Next"
+  ]
+}

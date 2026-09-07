@@ -1,0 +1,13 @@
+{
+  "title": "Domain Invoice persists and logs itself, with SQL embedded in the Go file",
+  "must_find": [
+    {"rule": 51, "file": "invoice.go", "symbol": "Save",
+     "why": "persistence and logging are written into the domain object instead of wired around it"},
+    {"rule": 68, "entry": "G1", "file": "invoice.go", "symbol": "insertInvoice",
+     "why": "SQL is a second language living inside the Go source file"}
+  ],
+  "must_not_find": [
+    {"rule": 29, "why": "Invoice is a data structure with a derived Total; the hybrid smell here is the persistence, cited under rule 51"},
+    {"rule": 36, "why": "the blank identifier discards sql.Result, not a null"}
+  ]
+}

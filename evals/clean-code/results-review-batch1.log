@@ -1,0 +1,28 @@
+[review] 001-intent-revealing-names
+[review] 002-disinforming-collection-name
+[review] 003-noise-word-distinctions
+[review] 004-short-name-long-scope
+   FAIL 003-noise-word-distinctions
+[review] 005-magic-page-size
+   PASS 002-disinforming-collection-name
+[review] 006-mental-mapping
+   FAIL 001-intent-revealing-names
+[review] 007-verb-named-type
+   FAIL 004-short-name-long-scope
+[review] 008-one-word-per-concept
+   FAIL 005-magic-page-size
+[review] 009-ignored-nomenclature
+   FAIL 006-mental-mapping
+[review] 010-clean-good-comments
+   PASS 007-verb-named-type
+[review] 011-gratuitous-prefix
+   FAIL 010-clean-good-comments
+[review] 012-name-at-wrong-level
+   FAIL 008-one-word-per-concept
+[review] 013-deep-nesting
+   PASS 011-gratuitous-prefix
+[review] 014-does-two-things
+   FAIL 009-ignored-nomenclature
+[review] 015-mixed-abstraction-levels
+   FAIL 012-name-at-wrong-level
+[review] 016-repeated-switch

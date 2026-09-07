@@ -1,0 +1,19 @@
+{
+  "title": "Pricing for customers with and without a discount plan",
+  "task": "In package `pricing`, customers may have a discount plan (a percentage off, some plans with a minimum order in cents below which the discount does not apply) or no plan at all. `Price(customer Customer, orderCents int64) int64` returns what they pay. A customer with no plan pays full price, and I do not want the pricing code checking for the absence of a plan. Test a plan, a plan below its minimum, and a customer without a plan.",
+  "rules_exercised": [
+    35,
+    36,
+    14
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_nil_return",
+    "no_bool_params",
+    "symbol_exists:Price"
+  ]
+}

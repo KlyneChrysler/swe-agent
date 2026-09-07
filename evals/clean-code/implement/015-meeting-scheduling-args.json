@@ -1,0 +1,23 @@
+{
+  "title": "Schedule a meeting without a long positional argument list",
+  "task": "In package `calendar` I need to schedule a meeting from a title, a start time, a duration, a room name, an organizer email, and a list of attendee emails, and get back a `Meeting` that can report whether it `Overlaps` another meeting. A meeting needs at least one attendee and a positive duration, otherwise it is an error. Design the API so a call site reads naturally rather than as a long positional list. Test overlap on touching, disjoint, and nested intervals.",
+  "rules_exercised": [
+    16,
+    29,
+    4,
+    67
+  ],
+  "entries_exercised": [
+    "F1"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_params:3",
+    "symbol_exists:Meeting",
+    "symbol_exists:Overlaps"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Three renderers share money, padding, and truncation formatting",
+  "task": "We render a sales report as plain text, CSV, and Markdown. All three need money formatting (`1234567` -> `12,345.67`), right-padding to a column width, and truncating a name to twenty characters with an ellipsis. Implement `Text`, `CSV`, and `Markdown` renderers over a slice of `Sale{Name string; Cents int}` and put the shared pieces where a reader would look for them.",
+  "rules_exercised": [
+    47,
+    20,
+    55,
+    68,
+    9
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_smell_names",
+    "max_files:4",
+    "max_params:3"
+  ]
+}

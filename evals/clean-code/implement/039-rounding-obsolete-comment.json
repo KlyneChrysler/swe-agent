@@ -1,0 +1,25 @@
+{
+  "title": "Change rounding under a comment that already lies",
+  "task": "Change `ToCents` in package `rounding` to round half to even (banker's rounding), so 2.125 becomes 212 and 2.375 becomes 238, and make it correct for negative amounts such as -2.125 becoming -212. Make sure everything in that file tells the truth afterwards. Add tests for the two halfway cases and the negative one.",
+  "seed": {
+    "rounding/round.go": "package rounding\n\n// ToCents rounds a dollar amount down to whole cents.\nfunc ToCents(dollars float64) int64 {\n\treturn int64(dollars*100 + 0.5)\n}\n"
+  },
+  "rules_exercised": [
+    22,
+    64,
+    24,
+    65
+  ],
+  "entries_exercised": [
+    "C2"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_comments_in_funcs",
+    "symbol_exists:ToCents"
+  ]
+}

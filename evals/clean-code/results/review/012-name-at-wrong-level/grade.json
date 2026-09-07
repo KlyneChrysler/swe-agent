@@ -1,0 +1,25 @@
+{
+  "mode": "review",
+  "scenario": "012-name-at-wrong-level",
+  "title": "An abstract interface names a concrete transport",
+  "clean_fixture": false,
+  "hits": [],
+  "misses": [
+    {
+      "rule": 69,
+      "entry": "N2",
+      "file": "notify.go",
+      "symbol": "Notifier",
+      "why": "the abstraction's method is named SendSMTP, a transport detail, though implementations such as ConsoleNotifier do not use SMTP; the name sits at the wrong level for callers"
+    }
+  ],
+  "false_positives": [
+    {
+      "rule": 16,
+      "why": "NotifyOverdue's three arguments are the notifier plus the two facts the message needs; nothing is a flag or output"
+    }
+  ],
+  "citations": 11,
+  "empty_output": false,
+  "pass": false
+}

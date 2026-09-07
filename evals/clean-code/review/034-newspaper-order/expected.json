@@ -1,0 +1,10 @@
+{
+  "title": "The file reads bottom-up: helpers first, headline last, constants at the end",
+  "must_find": [
+    {"rule": 25, "file": "report.go", "symbol": "Render",
+     "why": "the high-level Render and the Line type sit under the helpers they use, and the constants are at the bottom of the file; invert to read like a newspaper"}
+  ],
+  "must_not_find": [
+    {"rule": 20, "why": "each helper appears once and is called from one place"}
+  ]
+}

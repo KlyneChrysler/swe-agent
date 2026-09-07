@@ -1,0 +1,9 @@
+{
+  "title": "Clean: a plain data structure beside a small object",
+  "must_find": [],
+  "must_not_find": [
+    {"rule": 28, "why": "Address exposes fields because it is a data structure; Parcel hides its fields behind behavior and adds no accessors"},
+    {"rule": 29, "why": "each type is deliberately one kind: Address is data, Parcel is an object"},
+    {"rule": 36, "why": "a nil error is the Go idiom for success, not a null result"}
+  ]
+}

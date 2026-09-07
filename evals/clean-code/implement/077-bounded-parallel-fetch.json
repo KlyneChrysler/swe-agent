@@ -1,0 +1,22 @@
+{
+  "title": "Fetch URLs with bounded concurrency, results in order",
+  "task": "Implement `fetch.All(urls []string, limit int, get Getter) []Result` that fetches every URL through `Getter` with at most `limit` in flight at once and returns results in input order, each carrying the body or the error for that URL. Tests use a fake getter that records the peak number of concurrent calls, and must be deterministic. Keep the concurrency plumbing apart from the per-URL work.",
+  "rules_exercised": [
+    58,
+    61,
+    59,
+    63,
+    62
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_global_mutable",
+    "no_panic",
+    "max_params:3",
+    "no_nil_return"
+  ]
+}

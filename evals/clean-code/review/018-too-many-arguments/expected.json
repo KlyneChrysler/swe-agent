@@ -1,0 +1,10 @@
+{
+  "title": "A five-argument constructor",
+  "must_find": [
+    {"rule": 16, "entry": "F1", "file": "appointment.go", "symbol": "NewAppointment",
+     "why": "five positional arguments; patient/doctor and start/minutes/room are groups that want to be objects"}
+  ],
+  "must_not_find": [
+    {"rule": 28, "why": "End derives a value; it is not a getter over a field"}
+  ]
+}

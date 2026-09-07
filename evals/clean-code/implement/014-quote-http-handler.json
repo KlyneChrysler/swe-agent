@@ -1,0 +1,21 @@
+{
+  "title": "POST /quote handler with layered decoding, pricing, and response",
+  "task": "Write an `http.Handler` in package `quote` for POST /quote. The body is JSON `{\"sku\":\"A1\",\"quantity\":3}`; look the SKU up in an in-memory price table supplied when the handler is built, multiply, and respond with JSON `{\"total_cents\":N}`. A bad body or an unknown SKU is a 400 with a JSON error message, and the handler must not leak the Go JSON decoder's error text to the client. Keep request decoding, pricing, and response writing at their own levels. Test with httptest.",
+  "rules_exercised": [
+    13,
+    12,
+    34,
+    19,
+    33
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_nesting:2",
+    "max_params:3",
+    "no_panic"
+  ]
+}

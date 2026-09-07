@@ -1,0 +1,10 @@
+{
+  "title": "Single-letter locals hide the due date and the overdue span",
+  "must_find": [
+    {"rule": 1, "entry": "N1", "file": "invoice.go", "symbol": "DaysOverdue",
+     "why": "`d` is the due date and `x` is the overdue span; neither name says so"}
+  ],
+  "must_not_find": [
+    {"rule": 4, "why": "`day` and `gracePeriod` are named constants; there are no magic numbers"}
+  ]
+}

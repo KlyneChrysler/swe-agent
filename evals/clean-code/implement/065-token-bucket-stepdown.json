@@ -1,0 +1,23 @@
+{
+  "title": "Token bucket limiter that reads top-down",
+  "task": "Implement a token bucket rate limiter in package `limit`: `New(capacity int, refillPerSecond int)` and `Allow(now time.Time) bool`, shared by many goroutines. Refill is computed from the time passed in, so tests never sleep; a bucket never holds more than its capacity. Organise the file so it reads from the top down.",
+  "rules_exercised": [
+    46,
+    25,
+    61,
+    59,
+    68,
+    70
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_global_mutable",
+    "no_panic",
+    "max_params:2",
+    "no_bool_params"
+  ]
+}

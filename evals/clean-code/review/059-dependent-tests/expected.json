@@ -1,0 +1,11 @@
+{
+  "title": "Ledger tests share one package-level ledger so the second depends on the first",
+  "must_find": [
+    {"rule": 44, "file": "ledger_test.go", "symbol": "TestBalanceSumsEntries",
+     "why": "expects 750 only because TestPostRecordsEntry ran first against the shared ledger; not independent"}
+  ],
+  "must_not_find": [
+    {"rule": 43, "why": "each test asserts one concept with a single check"},
+    {"rule": 18, "why": "Post is a command and Balance a query; they are already separated"}
+  ]
+}

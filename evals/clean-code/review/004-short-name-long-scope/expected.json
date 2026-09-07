@@ -1,0 +1,10 @@
+{
+  "title": "A one-letter struct field read by every method in the file",
+  "must_find": [
+    {"rule": 4, "entry": "N5", "file": "roster.go", "symbol": "Roster",
+     "why": "field `s` holds the shifts and is used across three methods; its scope is the whole file, so it needs a real word"}
+  ],
+  "must_not_find": [
+    {"rule": 5, "why": "one-letter receiver names are the Go convention and are not encodings"}
+  ]
+}

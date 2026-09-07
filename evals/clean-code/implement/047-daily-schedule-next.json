@@ -1,0 +1,22 @@
+{
+  "title": "Next run of a weekday time-of-day schedule",
+  "task": "In package `schedule`, given a daily time of day (hour and minute) and a set of weekdays, compute `Next`: the first scheduled run at or after a given instant, in that instant's location. If the instant is exactly on a scheduled time, that instant is the answer. A Sundays-only schedule and a Friday 17:00 schedule asked on a Friday at 17:01 are the cases I care about most. Keep the search readable: no single function should do both the day walking and the time-of-day arithmetic.",
+  "rules_exercised": [
+    11,
+    12,
+    13,
+    21,
+    16
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_nesting:2",
+    "max_params:3",
+    "no_panic",
+    "symbol_exists:Next"
+  ]
+}

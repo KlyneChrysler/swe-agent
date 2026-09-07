@@ -1,0 +1,10 @@
+{
+  "title": "A row-mapping record that applies a late fee",
+  "must_find": [
+    {"rule": 31, "file": "payment_row.go", "symbol": "PaymentRow",
+     "why": "PaymentRow is a transfer record with public fields, yet ApplyLateFee puts a business rule on it; the rule belongs in a domain object or a function over rows"}
+  ],
+  "must_not_find": [
+    {"rule": 28, "why": "TotalCents is a function over a data structure, not an accessor"}
+  ]
+}

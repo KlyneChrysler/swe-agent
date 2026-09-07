@@ -1,0 +1,10 @@
+{
+  "title": "Loan formula written in single-letter shorthand the reader must decode",
+  "must_find": [
+    {"rule": 6, "entry": "G16", "file": "loan.go", "symbol": "MonthlyPayment",
+     "why": "p, r, n, q and g force the reader to map each letter to principal, annual rate, months, monthly rate and growth factor"}
+  ],
+  "must_not_find": [
+    {"rule": 20, "why": "the growth factor is computed once and reused; nothing is duplicated"}
+  ]
+}

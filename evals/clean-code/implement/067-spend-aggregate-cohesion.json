@@ -1,0 +1,22 @@
+{
+  "title": "Aggregate spending by category and render a table",
+  "task": "Implement `Aggregate(r io.Reader) (Totals, error)` in package `spend`: input is CSV rows `date,category,cents`, output is the total cents per category plus the grand total and the row count. A malformed row is an error naming its line number. Then `Totals.Table() string` renders categories sorted by name with right-aligned amounts and a final `TOTAL` row.",
+  "rules_exercised": [
+    48,
+    12,
+    13,
+    16,
+    33
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_params:3",
+    "max_nesting:2",
+    "no_panic",
+    "no_nil_return"
+  ]
+}

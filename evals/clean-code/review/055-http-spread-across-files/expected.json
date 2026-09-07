@@ -1,0 +1,15 @@
+{
+  "title": "Three files each call net/http directly instead of one wrapper",
+  "must_find": [
+    {"rule": 40, "file": "pricing.go", "symbol": "FetchPrice",
+     "why": "calls http.Get directly; the boundary is touched here and in two other files"},
+    {"rule": 40, "file": "inventory.go", "symbol": "FetchStock",
+     "why": "builds requests and uses http.DefaultClient directly, a second place that owns the boundary"},
+    {"rule": 40, "file": "health.go", "symbol": "IsUpstreamHealthy",
+     "why": "a third direct use of net/http; the vendor API is spread across the code we own"}
+  ],
+  "must_not_find": [
+    {"rule": 20, "why": "the three fetches use different verbs, headers, and decoders; there are no shared lines"},
+    {"rule": 16, "why": "FetchStock takes a Warehouse value and a sku, two arguments"}
+  ]
+}

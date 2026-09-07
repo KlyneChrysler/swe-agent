@@ -1,0 +1,27 @@
+{
+  "title": "Add caching in front of a slow repository without touching Directory",
+  "task": "Repeated `EmailOf` calls for the same ID hit the slow repository every time. Add caching so that, within one Directory, a repeated lookup of the same ID never reaches the repository twice; a miss (`ErrNotFound`) must not be cached. Directory's logic should not change; if anything changes it is the wiring. Tests should show the repository is called once for two lookups.",
+  "seed": {
+    "users/users.go": "package users\n\nimport (\n\t\"errors\"\n\t\"fmt\"\n)\n\n// User is a directory entry.\ntype User struct {\n\tID    string\n\tEmail string\n}\n\n// Repository looks users up by ID. Lookups are slow.\ntype Repository interface {\n\tFindByID(id string) (User, error)\n}\n\n// ErrNotFound reports a missing user.\nvar ErrNotFound = errors.New(\"user not found\")\n\n// Directory answers questions about users through a Repository.\ntype Directory struct {\n\trepository Repository\n}\n\n// NewDirectory wires a Directory to its Repository.\nfunc NewDirectory(repository Repository) Directory {\n\treturn Directory{repository: repository}\n}\n\n// EmailOf returns the email address of the user with the given ID.\nfunc (d Directory) EmailOf(id string) (string, error) {\n\tuser, err := d.repository.FindByID(id)\n\tif err != nil {\n\t\treturn \"\", fmt.Errorf(\"email of %q: %w\", id, err)\n\t}\n\treturn user.Email, nil\n}\n"
+  },
+  "rules_exercised": [
+    47,
+    51,
+    49,
+    30,
+    68
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_exists:Repository",
+    "symbol_exists:NewDirectory",
+    "no_smell_names",
+    "no_global_mutable",
+    "no_nil_return",
+    "max_files:3"
+  ]
+}

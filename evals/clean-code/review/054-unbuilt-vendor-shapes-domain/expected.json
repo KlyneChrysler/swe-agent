@@ -1,0 +1,12 @@
+{
+  "title": "Order confirmation written against an unshipped vendor's draft envelope",
+  "must_find": [
+    {"rule": 39, "file": "confirm.go", "symbol": "ConfirmOrder",
+     "why": "shaped around the vendor's draft envelope and status codes instead of a Notifier interface the order code wants"},
+    {"rule": 68, "entry": "G35", "file": "confirm.go", "symbol": "vendorSendSMS",
+     "why": "the vendor host is configurable data buried as a local constant in the lowest-level function"}
+  ],
+  "must_not_find": [
+    {"rule": 37, "why": "vendorEnvelope is a type this package owns, not a third-party type passed around"}
+  ]
+}

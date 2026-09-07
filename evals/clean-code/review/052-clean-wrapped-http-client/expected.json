@@ -1,0 +1,11 @@
+{
+  "title": "net/http wrapped behind a small RateClient with tests against a local server",
+  "must_find": [],
+  "must_not_find": [
+    {"rule": 37, "why": "*http.Client is injected once and never leaves RateClient; callers see only Rate"},
+    {"rule": 40, "why": "net/http is touched in one type only; this is the wrapper"},
+    {"rule": 19, "why": "each error check is a single-line Go idiom, and wrapping adds context"},
+    {"rule": 50, "why": "the http client is constructed by the caller and injected through NewRateClient"},
+    {"rule": 44, "why": "tests use an in-process httptest server; they are fast, independent, and offline"}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Private fields republished through getter and setter pairs",
+  "must_find": [
+    {"rule": 28, "file": "account.go", "symbol": "Account",
+     "why": "every field has a Get and a Set; this is the field with extra steps, not an abstraction such as Deposit and Withdraw"}
+  ],
+  "must_not_find": [
+    {"rule": 7, "why": "Get and Set prefixes are the accessor idiom rule 7 names; the defect is that accessors are all there is"}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Per-key hit counters using standard-library primitives",
+  "task": "Implement `hits.Counter` with `Hit(key string)` and `Snapshot() map[string]int`, used from many goroutines at once; a snapshot is a copy that later hits do not change. Prefer what the standard library already gives you over building your own primitives. Tests must be exact under `-race` with a fixed number of goroutines and hits.",
+  "rules_exercised": [
+    60,
+    59,
+    61,
+    63
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_global_mutable",
+    "no_panic",
+    "no_nil_return"
+  ]
+}

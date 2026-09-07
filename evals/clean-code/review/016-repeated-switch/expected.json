@@ -1,0 +1,10 @@
+{
+  "title": "The same Kind discriminator switched on in two files",
+  "must_find": [
+    {"rule": 14, "file": "labels.go", "symbol": "Label",
+     "why": "PriceCents in pricing.go and Label in labels.go both switch on item.Kind; the switch belongs once in a factory behind a polymorphic Item"}
+  ],
+  "must_not_find": [
+    {"rule": 4, "why": "the label strings are the returned values themselves, not magic literals standing for something else"}
+  ]
+}

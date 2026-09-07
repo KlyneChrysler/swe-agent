@@ -1,0 +1,10 @@
+{
+  "title": "A TODO with no tracker reference and no schedule",
+  "must_find": [
+    {"rule": 23, "file": "calendar.go", "symbol": "DaysBetweenYears",
+     "why": "a task note is allowed only with a tracker reference and a removal date; this one has neither"}
+  ],
+  "must_not_find": [
+    {"rule": 4, "why": "daysPerYear is a named constant"}
+  ]
+}

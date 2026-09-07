@@ -1,0 +1,21 @@
+{
+  "title": "Invoice parser whose tests run with one command",
+  "task": "Write `invoices.Parse(r io.Reader) ([]Invoice, error)` for our line format `ID|customer|cents|YYYY-MM-DD`, one invoice per line, blank lines ignored, any other malformed line an error naming the line number. Running `go test -cover ./...` must be the only step: no script, no environment variable, no generated fixture files, no network.",
+  "rules_exercised": [
+    66,
+    44,
+    70,
+    41,
+    33
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_global_mutable",
+    "no_panic",
+    "no_nil_return"
+  ]
+}

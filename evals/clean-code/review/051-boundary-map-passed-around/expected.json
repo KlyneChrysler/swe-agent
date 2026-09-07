@@ -1,0 +1,13 @@
+{
+  "title": "Decoded settings map is passed across the system as a boundary type",
+  "must_find": [
+    {"rule": 37, "file": "settings.go", "symbol": "LoadSettings",
+     "why": "returns the raw decoded map[string]any instead of a Settings type in the system's own terms"},
+    {"rule": 37, "file": "report.go", "symbol": "RenderHeader",
+     "why": "takes the boundary map and depends on its raw keys and dynamic values"}
+  ],
+  "must_not_find": [
+    {"rule": 36, "why": "`return nil, err` is the idiomatic Go error return, not a null result"},
+    {"rule": 20, "why": "RenderHeader and RenderFooter format different fields; no shared lines to extract"}
+  ]
+}

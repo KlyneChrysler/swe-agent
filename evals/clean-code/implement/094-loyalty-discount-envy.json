@@ -1,0 +1,25 @@
+{
+  "title": "Loyalty discount that belongs with the customer's data",
+  "task": "Add a loyalty discount on an order's subtotal: five percent for customers who have been members for two years or more, ten percent for five years or more, plus two percent more for anyone with twenty or more orders placed, capped at twelve percent in total; suspended customers get nothing. The discount is in cents, rounded down. Put the rule where its data lives.",
+  "seed": {
+    "orders/orders.go": "package orders\n\n// Customer is a buyer with a loyalty history.\ntype Customer struct {\n\tName         string\n\tYearsMember  int\n\tOrdersPlaced int\n\tSuspended    bool\n}\n\n// Order is a purchase by a Customer.\ntype Order struct {\n\tCustomer Customer\n\tSubtotal int\n}\n"
+  },
+  "rules_exercised": [
+    68,
+    30,
+    29,
+    4
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_getter_setter_pairs",
+    "no_comments_in_funcs",
+    "max_nesting:2",
+    "no_panic",
+    "no_bool_params"
+  ]
+}

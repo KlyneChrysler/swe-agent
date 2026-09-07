@@ -1,0 +1,20 @@
+{
+  "title": "Date range overlap that is hard to call wrongly",
+  "task": "Write overlap detection for date ranges in package `dates`: a range is a start day and an end day, both inclusive, and two ranges `Overlaps` when they share at least one day. Callers currently hold four `time.Time` values for two ranges, and I would like the API to make it hard to pass them in the wrong order. Test touching ranges (the end of one equals the start of the other), disjoint ranges, and one range inside another.",
+  "rules_exercised": [
+    16,
+    4,
+    26,
+    2
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_params:2",
+    "symbol_exists:Overlaps",
+    "no_comments_in_funcs"
+  ]
+}

@@ -24,8 +24,8 @@ first read" is the bar.
 | `swe` agent | A staff-engineer reviewer that reads your diff, hunts every anti-slop rule (duplication first), verifies each finding, and reports ranked, located, fixable violations. It never praises and never invents findings. |
 | `/swe` command | Runs the anti-slop review on your current changes before you commit. |
 | `clean-code` skill | The Clean Code standard: names, functions, comments, formatting, objects versus data structures, error handling, boundaries, unit tests, classes, systems, emergence, concurrency, successive refinement, and the checklist (C1 to T9). |
-| `clean-code` agent | A reviewer that holds your diff to all seventy rules, duplication and null first, and reports ranked, located, fixable violations citing rule numbers. Told explicitly, it also writes or refactors code under the same standard. |
-| `/clean-code` command | Runs the Clean Code review on your current changes before you commit. |
+| `clean-code` agent | An engineer, not just a reviewer. Given a task it writes the code test-first under all seventy rules, then reviews its own diff against the checklist and fixes every violation before it returns. Given a diff it reports ranked, located, fixable violations citing rule numbers. |
+| `/clean-code` command | `/clean-code <task>` builds it as Clean Code. `/clean-code review [target]` reviews your current changes before you commit. |
 
 ## Install
 
@@ -40,13 +40,17 @@ Restart Claude Code if prompted. That is it.
 
 ## Use
 
-- **Before you commit**: run `/swe` or `/clean-code`. Each reviews your
-  uncommitted changes and tells you what an unforgiving reviewer would
-  reject, and how to fix it. Run both for the strictest bar.
+- **To build something**: `/clean-code add a rate limiter to the gateway`.
+  The agent reads the surrounding code, names the pieces, writes
+  test-first in small cycles, refines against the full checklist until a
+  pass finds nothing, and reports what it built and how the tests ran.
+- **Before you commit**: run `/swe` or `/clean-code review`. Each reviews
+  your uncommitted changes and tells you what an unforgiving reviewer
+  would reject, and how to fix it. Run both for the strictest bar.
 - **While you write**: the standards load as skills, so Claude holds your
   new code to them as it goes.
-- **On a specific target**: `/swe path/to/file`, `/clean-code path/to/file`,
-  or either with a commit range.
+- **On a specific target**: `/swe path/to/file`,
+  `/clean-code review path/to/file`, or either with a commit range.
 
 Reviews are ranked most-severe first. The anti-slop review orders
 correctness and duplication, then architecture, then size and
@@ -137,6 +141,31 @@ The `clean-code` reviewer was run against two specimens before release:
    author had actually left in, and cleared everything else with a
    one-line justification per rule group. The import was removed; zero
    invented findings.
+
+The `clean-code` implementer was then run cold on an empty Go module with
+a real task: an in-memory account ledger in integer cents with deposits,
+withdrawals, all-or-nothing transfers, an audit trail, and persistence
+behind a caller-supplied interface wired in one place. It worked
+test-first in five red-green cycles and delivered eleven small files,
+thirty tests, 100% statement coverage, vet and gofmt clean, functions of
+a few lines in stepdown order, wrapped errors, and no nulls. Then the
+reviewer was turned on its output, and the fix cycle was repeated:
+
+| Cycle | Findings | Correctness among them |
+|---|---|---|
+| First review | 13 | self-transfer created money |
+| Second review | 5 | a stored negative balance was trusted |
+| Third review | 4 | a stored record with the wrong id was trusted |
+
+Each fix cycle ran under the writing protocol, and on the second pass the
+implementer found an integer-overflow boundary bug on its own that no
+review had listed. The final package has 59 tests at 100% coverage. Two
+lessons shaped the protocol: a happy-path suite hides boundary defects,
+so the implementer now attacks every boundary with a test before it
+refines; and self-review is softer than a stranger's review, so it now
+runs the full review-mode hunt over its own diff. Run `/clean-code review`
+before you commit anyway. An unforgiving reviewer keeps finding edges,
+and that is the point.
 
 ## License
 

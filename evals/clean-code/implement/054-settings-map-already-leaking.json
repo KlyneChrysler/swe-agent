@@ -1,0 +1,26 @@
+{
+  "title": "Settings map has leaked into server; add mailer without spreading it",
+  "task": "Add a `mailer` package that builds its SMTP address and sender from `SMTP_HOST`, `SMTP_PORT`, and `SMTP_FROM` out of the same settings the server reads, with `Send(to, body string) error` writing `From: ...`, `To: ...`, and the body to an `io.Writer` for now. The raw map from `settings.Load` has already reached `server`; do not let it spread any further, and leave `settings` and `server` better than you found them.",
+  "seed": {
+    "settings/settings.go": "package settings\n\nimport \"strings\"\n\n// Load parses KEY=VALUE lines into a map. Lines without '=' are ignored.\nfunc Load(lines []string) map[string]string {\n\tvalues := map[string]string{}\n\tfor _, line := range lines {\n\t\tkey, value, found := strings.Cut(line, \"=\")\n\t\tif found {\n\t\t\tvalues[strings.TrimSpace(key)] = strings.TrimSpace(value)\n\t\t}\n\t}\n\treturn values\n}\n",
+    "server/server.go": "package server\n\n// Listener is where the HTTP server will bind.\ntype Listener struct {\n\taddr string\n}\n\n// NewListener reads HOST and PORT out of the loaded settings.\nfunc NewListener(values map[string]string) Listener {\n\treturn Listener{addr: values[\"HOST\"] + \":\" + values[\"PORT\"]}\n}\n\n// Addr answers the bind address as host:port.\nfunc (l Listener) Addr() string {\n\treturn l.addr\n}\n"
+  },
+  "rules_exercised": [
+    37,
+    40,
+    64,
+    30,
+    68
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_files:4",
+    "no_nil_return",
+    "no_smell_names",
+    "no_panic"
+  ]
+}

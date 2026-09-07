@@ -1,0 +1,12 @@
+{
+  "title": "Page size is a bare 20 and the start offset is recomputed three times",
+  "must_find": [
+    {"rule": 4, "entry": "G25", "file": "page.go", "symbol": "PageOf",
+     "why": "the page size 20 appears three times as a bare literal instead of a named constant"},
+    {"rule": 68, "entry": "G33", "file": "page.go", "symbol": "PageOf",
+     "why": "the start boundary `page*20` is computed in three places instead of once in a named variable"}
+  ],
+  "must_not_find": [
+    {"rule": 36, "why": "an out-of-range page returns an empty Page, not nil"}
+  ]
+}

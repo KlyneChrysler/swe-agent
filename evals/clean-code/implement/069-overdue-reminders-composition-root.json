@@ -1,0 +1,29 @@
+{
+  "title": "Overdue reminders wired through the existing composition root",
+  "task": "Add overdue reminders to billing: `Reminders.Send() error` finds unpaid invoices whose due date has passed and sends one message per invoice, `Invoice <id> for <customer> is overdue`, through a mailer we do not have yet (SMTP arrives next sprint). Wire it into `app.New` the same way `Invoices` is wired: construction stays in the root and Reminders receives what it needs ready to use.",
+  "seed": {
+    "app/app.go": "package app\n\nimport \"example.com/eval/billing\"\n\n// App is the composition root: every collaborator is built here and nowhere else.\ntype App struct {\n\tInvoices billing.Invoices\n}\n\n// New wires the application from its external dependencies.\nfunc New(clock billing.Clock, store billing.Store) App {\n\treturn App{Invoices: billing.NewInvoices(clock, store)}\n}\n",
+    "billing/billing.go": "package billing\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\n// Invoice is an amount owed by a customer, due on a date.\ntype Invoice struct {\n\tID       string\n\tCustomer string\n\tCents    int\n\tDue      time.Time\n\tPaid     bool\n}\n\n// Store persists invoices.\ntype Store interface {\n\tSave(invoice Invoice) error\n\tUnpaid() ([]Invoice, error)\n}\n\n// Clock tells the current time so tests can replace it.\ntype Clock interface {\n\tNow() time.Time\n}\n\nconst paymentTerm = 30 * 24 * time.Hour\n\n// Invoices issues invoices due thirty days after creation.\ntype Invoices struct {\n\tclock Clock\n\tstore Store\n}\n\n// NewInvoices wires Invoices to its collaborators.\nfunc NewInvoices(clock Clock, store Store) Invoices {\n\treturn Invoices{clock: clock, store: store}\n}\n\n// Issue records a new invoice for a customer.\nfunc (i Invoices) Issue(id, customer string, cents int) (Invoice, error) {\n\tinvoice := Invoice{ID: id, Customer: customer, Cents: cents, Due: i.clock.Now().Add(paymentTerm)}\n\tif err := i.store.Save(invoice); err != nil {\n\t\treturn Invoice{}, fmt.Errorf(\"issue invoice %s: %w\", id, err)\n\t}\n\treturn invoice, nil\n}\n"
+  },
+  "rules_exercised": [
+    50,
+    39,
+    49,
+    44,
+    20
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "symbol_exists:New",
+    "symbol_exists:NewInvoices",
+    "symbol_exists:Reminders",
+    "no_global_mutable",
+    "no_todo",
+    "max_params:3",
+    "no_nil_return"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Expense export in text or CSV without a format check on every call",
+  "task": "Package `export` renders a list of expense rows (date, category, amount in cents) either as fixed-width text or as CSV; the caller picks which when the renderer is built. Later we will add JSON. Please do not route every call through a check on which format was chosen. Test both outputs for the same two rows.",
+  "rules_exercised": [
+    16,
+    14,
+    49,
+    67
+  ],
+  "entries_exercised": [
+    "F3"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_bool_params",
+    "single_switch:Format",
+    "single_switch:format",
+    "single_switch:kind"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "title": "Import a CSV row into the inventory store",
+  "task": "Add `ImportRow(row string, store Store) error` to package `inventory`. A row is `sku,name,quantity` as in `A100,Blue Widget,12`. Reject rows with the wrong number of fields, an empty SKU, or a quantity that is not a non-negative integer, and only put valid items into the store. Use the types already in the package; do not introduce a second item type. Add tests covering a valid row and each kind of rejection.",
+  "seed": {
+    "inventory/store.go": "package inventory\n\nimport \"errors\"\n\n// Item is one stocked product.\ntype Item struct {\n\tSKU      string\n\tName     string\n\tQuantity int\n}\n\n// Store keeps items by SKU.\ntype Store interface {\n\tPut(item Item) error\n\tGet(sku string) (Item, error)\n}\n\n// ErrUnknownSKU is returned by Get for a SKU that was never Put.\nvar ErrUnknownSKU = errors.New(\"inventory: unknown sku\")\n\n// MemoryStore is a Store backed by a map.\ntype MemoryStore struct {\n\titems map[string]Item\n}\n\n// NewMemoryStore returns an empty MemoryStore.\nfunc NewMemoryStore() *MemoryStore {\n\treturn &MemoryStore{items: map[string]Item{}}\n}\n\nfunc (s *MemoryStore) Put(item Item) error {\n\ts.items[item.SKU] = item\n\treturn nil\n}\n\nfunc (s *MemoryStore) Get(sku string) (Item, error) {\n\titem, ok := s.items[sku]\n\tif !ok {\n\t\treturn Item{}, ErrUnknownSKU\n\t}\n\treturn item, nil\n}\n"
+  },
+  "rules_exercised": [
+    12,
+    13,
+    11,
+    1,
+    20
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "max_nesting:2",
+    "max_params:3",
+    "no_smell_names",
+    "symbol_exists:ImportRow"
+  ]
+}

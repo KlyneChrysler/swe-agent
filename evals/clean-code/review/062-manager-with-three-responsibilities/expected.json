@@ -1,0 +1,13 @@
+{
+  "title": "OrderManager prices, persists, and composes notifications",
+  "must_find": [
+    {"rule": 47, "file": "order_manager.go", "symbol": "OrderManager",
+     "why": "three responsibilities and three reasons to change (tax rules, receipt storage, notification text), with the Manager suffix to prove it"},
+    {"rule": 48, "file": "order_manager.go", "symbol": "OrderManager",
+     "why": "each method uses exactly one of the three fields; three classes are trying to get out"}
+  ],
+  "must_not_find": [
+    {"rule": 16, "why": "NewOrderManager's three arguments are the symptom of rule 47, not a separate defect to fix by adding a parameter object"},
+    {"rule": 68, "entry": "G1", "why": "the receipt body is plain text, not a second language"}
+  ]
+}

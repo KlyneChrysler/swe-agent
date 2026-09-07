@@ -1,0 +1,10 @@
+{
+  "title": "Find returns nil for an unknown id and the caller nil-checks",
+  "must_find": [
+    {"rule": 36, "file": "greeting.go", "symbol": "Find",
+     "why": "Find returns a nil *Customer when the id is unknown, forcing GreetingFor to nil-check; return a value with an ok flag, an error, or a guest Customer"}
+  ],
+  "must_not_find": [
+    {"rule": 4, "why": "the greeting is a named constant"}
+  ]
+}

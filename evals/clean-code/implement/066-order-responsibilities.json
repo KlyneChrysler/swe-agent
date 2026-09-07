@@ -1,0 +1,22 @@
+{
+  "title": "An order that validates, totals, renders, and saves",
+  "task": "Build the `order` package: an order has lines (`SKU`, unit cents, quantity); validation reports no lines or a non-positive quantity as an error naming the offending SKU; totals add 7% tax rounded to the nearest cent; a plain-text receipt renders one line per item and the total; and an order can be saved through a `Store` interface. Each of those is a separate reason to change.",
+  "rules_exercised": [
+    47,
+    48,
+    12,
+    51,
+    68
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_smell_names",
+    "max_files:5",
+    "max_params:3",
+    "no_panic"
+  ]
+}

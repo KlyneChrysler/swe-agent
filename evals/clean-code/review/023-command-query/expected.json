@@ -1,0 +1,10 @@
+{
+  "title": "Set both stores a value and answers whether the key existed",
+  "must_find": [
+    {"rule": 18, "file": "registry.go", "symbol": "Set",
+     "why": "Set changes state and returns a status about it; split into a Has query and a Set command"}
+  ],
+  "must_not_find": [
+    {"rule": 28, "why": "Set and Get are the essence of a registry, not accessors over an unrelated hidden field"}
+  ]
+}

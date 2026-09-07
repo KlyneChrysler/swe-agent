@@ -1,0 +1,20 @@
+{
+  "title": "Country dialing code lookup without hand-aligned columns",
+  "task": "Package `phone` needs `DialingCode(country string) (string, error)` for at least these ISO codes: PH +63, US +1, GB +44, JP +81, DE +49, BR +55, IN +91, AU +61. An unknown code is an error mentioning the code. Lay the table out so gofmt is happy and the lines stay short; do not pad it into columns by hand, and keep the table where the lookup can find it without a package-level variable. Test two known codes and an unknown one.",
+  "rules_exercised": [
+    26,
+    4,
+    27
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "gofmt_clean",
+    "no_comments_in_funcs",
+    "no_global_mutable",
+    "symbol_exists:DialingCode"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Document builder whose ordering cannot be got wrong",
+  "task": "Implement a `doc` package that produces a plain-text document: a header (the title, then a line of `=` the same length), any number of paragraphs separated by blank lines, and a footer that is the single word `end`. The header must come before any paragraph and the footer last; make that impossible to get wrong through the types rather than by documenting it. The finished document comes out as a string.",
+  "rules_exercised": [
+    17,
+    18,
+    57,
+    68
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_panic",
+    "no_todo",
+    "no_bool_params",
+    "no_comments_in_funcs"
+  ]
+}

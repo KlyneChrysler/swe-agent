@@ -1,0 +1,22 @@
+{
+  "title": "Dispatcher over email, SMS, and push channels",
+  "task": "Implement a `notify` package with a `Dispatcher` that delivers a `Notification{To, Subject, Body string}` over email, SMS, or push. Email renders `Subject: <subject>` then a blank line then the body; SMS renders the body cut to 160 characters; push renders `<subject> | <body>`. Each channel writes to its own `io.Writer` for now. Adding a fourth channel later must not mean editing the dispatcher.",
+  "rules_exercised": [
+    49,
+    14,
+    57,
+    68
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "single_switch:Channel",
+    "symbol_exists:Dispatcher",
+    "no_bool_params",
+    "no_smell_names",
+    "no_panic"
+  ]
+}

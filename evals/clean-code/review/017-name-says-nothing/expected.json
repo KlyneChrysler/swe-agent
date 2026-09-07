@@ -1,0 +1,10 @@
+{
+  "title": "A function called Update that applies a late fee",
+  "must_find": [
+    {"rule": 15, "entry": "G20", "file": "latefee.go", "symbol": "Update",
+     "why": "Update does not say what changes; the function applies a late fee and should be named so"}
+  ],
+  "must_not_find": [
+    {"rule": 17, "why": "Update returns a modified copy and touches no state beyond its result"}
+  ]
+}

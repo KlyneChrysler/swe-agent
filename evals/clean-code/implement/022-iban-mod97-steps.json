@@ -1,0 +1,24 @@
+{
+  "title": "IBAN validation whose steps need no narration",
+  "task": "Implement `Valid(iban string) bool` in package `iban` using the mod-97 check: strip spaces, uppercase, move the first four characters to the end, replace each letter with its number (A=10 through Z=35), and check that the resulting number modulo 97 equals 1, computing the modulus incrementally over the digits so it fits in an int. I want each of those steps to be obvious to a reader without a running narration. Test `GB82 WEST 1234 5698 7654 32` as valid and a one-digit corruption of it as invalid.",
+  "rules_exercised": [
+    22,
+    24,
+    4,
+    12,
+    65
+  ],
+  "entries_exercised": [
+    "C3"
+  ],
+  "checks": [
+    "tests_exist",
+    "tests_pass",
+    "vet_clean",
+    "gofmt_clean",
+    "max_func_lines:20",
+    "no_comments_in_funcs",
+    "no_smell_names",
+    "symbol_exists:Valid"
+  ]
+}

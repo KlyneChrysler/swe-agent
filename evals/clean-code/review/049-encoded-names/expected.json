@@ -1,0 +1,12 @@
+{
+  "title": "Hungarian and interface prefixes on names",
+  "must_find": [
+    {"rule": 5, "entry": "N6", "file": "storage.go", "symbol": "IStorage",
+     "why": "the I prefix encodes that Storage is an interface; the caller should not have to decode it"},
+    {"rule": 5, "entry": "N6", "file": "storage.go", "symbol": "MemoryStorage",
+     "why": "m_entries, strKey and arrBytes carry member and type encodings"}
+  ],
+  "must_not_find": [
+    {"rule": 36, "why": "a nil error is the success value, not a null result"}
+  ]
+}
