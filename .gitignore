@@ -1,0 +1,3 @@
+evals/**/bin/
+evals/**/results/
+evals/**/results-*.log
