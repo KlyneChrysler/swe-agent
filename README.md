@@ -177,12 +177,19 @@ reproduces it.
 
 The first full run measured the reviewer before its precision work:
 
-| Mode | Passed |
-|---|---|
-| Review | 48 / 100 |
-| Implement | 39 / 100 |
+| Mode | Passed | Notes |
+|---|---|---|
+| Review | 48 / 100 | every scenario really ran |
+| Implement | 39 / 100 | not a valid measurement, see below |
 
-Recall was the strong half: only 18 planted defects were missed across 100
+The implement number is an artifact, not a result. Sixty-six of those runs
+died on an account rate limit: their workspaces hold no Go files at all and
+their entire output is the limit message. Only thirty-four scenarios
+actually executed. Those are being re-run, and the honest implement figure
+is whatever that re-run reports.
+
+The review run is sound; no review scenario hit the limit. Recall was the
+strong half: only 18 planted defects were missed across 100
 review fixtures. Precision was the weak half: 33 scenarios failed on false
 positives alone, the reviewer averaged 12 citations per review, and all 8
 fixtures written to be clean drew findings. Two rules were added in
@@ -201,10 +208,10 @@ Re-running the 8 clean fixtures after those changes:
 Over-reporting on clean code roughly halved. The suite scores a clean
 fixture as passing only at zero findings, and none reach that, so the
 honest summary is that the reviewer is now much quieter on good code
-rather than silent on it. The full suite has not been re-run against the
-current agent, so the 48 and 39 above still describe the earlier version.
-Run-to-run variance is real: one fixture drew 9, 3, and 7 citations on
-three identical runs. Treat single numbers accordingly.
+rather than silent on it. The full review suite has not been re-run
+against the current agent, so the 48 above still describes the earlier
+version. Run-to-run variance is real: one fixture drew 9, 3, and 7
+citations on three identical runs. Treat single numbers accordingly.
 
 ## License
 
