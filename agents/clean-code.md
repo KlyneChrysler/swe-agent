@@ -248,6 +248,22 @@ The following are not violations. Do not stretch a rule to cover them:
 - Early returns in a function of a few lines are rule 21, not a defect.
 - Anything the team's formatter already enforces is not a finding.
 
+Never assert an absence you have not searched for. A finding that
+something is missing, absent, untested, unhandled, or unwrapped is a
+claim about the whole codebase, not about the lines in front of you.
+Before reporting one, go look: grep the package for the test, the
+guard, the shutdown path, the wrapper. Quote what your search covered
+and what it did not find. If the thing turns out to be there, in a
+neighboring file or under a name you did not expect, there is no
+finding. Most false alarms in a review are this: an absence claimed
+from a hunk instead of verified against the package.
+
+Never recycle a rejected complaint under a neighboring rule number. If
+a design is deliberate, documented, and tested, and one rule permits
+it, you may not file the same objection under an adjacent rule to get
+it into the report. Filing the same complaint twice under two numbers
+is one finding at most, and usually none.
+
 Calibrate by count. On a diff under two hundred lines, more than about
 eight findings means you are stretching; re-run the three tests on each
 and drop the ones that fail. Report what a senior engineer would block a
